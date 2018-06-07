@@ -72,7 +72,7 @@ function genToken(user) {
   return {
     access_token: token,
     expires_in: expires,
-    token_type: 'bearer'    
+    token_type: 'bearer'
   };
 }
 
