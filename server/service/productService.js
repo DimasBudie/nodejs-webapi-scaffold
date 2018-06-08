@@ -28,14 +28,17 @@ let productService = {
 
     // Update the product
     update: function (product) {
-        throw 'Not implemented';
+        if (id == '')
+            throw 'Id is mandatory';
+        validateModel(product);
+        db.findAndUpdate({ 'id' : id, })
     },
 
     // Delete an existing product
     delete: function (id) {
         if (id == '')
             throw 'Id is mandatory';
-        db.findAndRemove({ 'id': id });
+        db.removeWhere({ 'id': id });
     },
 
     // Get all products in db
