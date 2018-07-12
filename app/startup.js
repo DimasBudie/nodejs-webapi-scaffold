@@ -1,5 +1,4 @@
 var express = require('express');
-var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var app = express();
@@ -25,7 +24,7 @@ app.all('/*', function(req, res, next) {
 // Only the requests that start with /api/v1/* will be checked for the token.
 // Any URL's that do not follow the below pattern should be avoided unless you 
 // are sure that authentication is not needed
-app.all('/api/v1/*', [require('./middleware/validateRequest')]);
+app.all('/api/v1/*', [require('./engine/authMiddleware')]);
 
 // The list of routes for the application. 
 app.use('/', require('./controller'));

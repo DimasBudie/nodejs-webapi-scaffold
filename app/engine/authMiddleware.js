@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
     try {
 
       // Decore the token using the secret key in order to validate the content.
-      var decoded = jwt.decode(token, require('../config/secret.js')());
+      var decoded = jwt.decode(token, require('../engine/authSecretKey')());
  
       if (decoded.exp <= Date.now()) {
         res.status(400);
@@ -29,6 +29,8 @@ module.exports = function(req, res, next) {
         return;
       }
  
+      console.log(decoded);
+
       // Authorize the user to see if it can access the resources
       // The key would be the logged in user's username.
       var dbUser = validateUser(key); 
