@@ -6,8 +6,8 @@ let authController = {
 
   login: function (req, res) {
 
-    let username = req.body.username || "",
-      password = req.body.password || "";
+    let username = req.body.username || "";
+    let password = req.body.password || "";
 
     // If the username or password is invalid/not present, we will throw a 401.
     if (username == "") {
@@ -25,18 +25,14 @@ let authController = {
 
     // If authentication fails send a 401 back.
     if (!dbUser) {
-      res.status(401);
-      res.json({
-        "status": 401,
-        "message": "Invalid credentials"
-      });
+      httpResponse.badRequest(res, "Invalid credentials.");
       return;
     }
 
     // If authentication is success will generate a token
     // and dispatch it to the client.
     if (dbUser) {
-      res.json(genToken(dbUser));
+      httpResponse.data(res, genToken(dbUser));
     }
 
   },
@@ -62,9 +58,9 @@ function genToken(user) {
   }, secretKey);
 
   return {
-    access_token: token,
-    expires_in: expires,
-    token_type: 'bearer'
+    accessToken: token,
+    expiresIn: expires,
+    tokenType: 'bearer'
   };
 }
 
