@@ -1,76 +1,57 @@
-var jwt = require('jwt-simple');
-var validateUser = require('../controller/authController').validateUser;
- 
-module.exports = function(req, res, next) {
- 
-  // When performing a cross domain request, will recieve
-  // a preflighted request first. This is to check if our the app
-  // is safe. 
+let tokenService = require("../service/tokenService");
+let userService = require("../service/userService");
+let result = require("../engine/httpResponseHelper");
 
-  // Just skip the token outh for [OPTIONS] requests.
-  //if(req.method == 'OPTIONS') next();
- 
-  // Extract the token and key from request.
-  var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
-  var key = (req.body && req.body.x_key) || (req.query && req.query.x_key) || req.headers['x-key'];
- 
-  if (token || key) {
-    try {
+let authMiddleware = (req, res, next) => {
+  try {
 
-      // Decore the token using the secret key in order to validate the content.
-      var decoded = jwt.decode(token, require('../engine/authSecretKey')());
- 
-      if (decoded.exp <= Date.now()) {
-        res.status(400);
-        res.json({
-          "status": 400,
-          "message": "Token Expired"
-        });
-        return;
-      }
- 
-      console.log(decoded);
+    // When performing a cross domain request, will recieve
+    // a preflighted request first. This is to check if our the app is safe. 
 
-      // Authorize the user to see if it can access the resources
-      // The key would be the logged in user's username.
-      var dbUser = validateUser(key); 
-      if (dbUser) {
-
-        if ((req.url.indexOf('admin') >= 0 && dbUser.role == 'admin') || (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0)) {
-          next(); // To move to next middleware
-        } else {
-          res.status(403);
-          res.json({
-            "status": 403,
-            "message": "Not Authorized"
-          });
-          return;
-        }
-      } else {
-        // No user with this name exists, respond back with a 401
-        res.status(401);
-        res.json({
-          "status": 401,
-          "message": "Invalid User"
-        });
-        return;
-      }
- 
-    } catch (err) {
-      res.status(500);
-      res.json({
-        "status": 500,
-        "message": "Oops something went wrong",
-        "error": err
-      });
+    // Just skip the token outh for [OPTIONS] requests.
+    // if(req.method == 'OPTIONS') next();
+    
+    let token = getRequestToken(req);
+    if (!token) {
+      result.badRequest(res, "Token not found")
+      return;
     }
-  } else {
-    // When token cannot be found into the request.
-    res.status(401);
-    res.json({
-      "status": 401,
-      "message": "Invalid Token or Key"
-    });
+
+    // Decode the token in order to validate the content.
+    var decoded = tokenService.decodeToken(token);
+
+    // Check if the token is expired.
+    if (decoded.exp <= Date.now()) {
+      result.badRequest(res, "Token expired");
+      return;
+    }
+
+    // Check if used inside of the token is valid.
+    var dbUser = userService.getByUsername(decoded.user.name);
+    if (!dbUser) {
+      result.badRequest(res, "Invalid token");
+      return;
+    }
+
+    // Check the authorization for the given user.
+    // if ((req.url.indexOf('admin') >= 0 && dbUser.role == 'admin') || (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0)) {
+    //   next(); // To move to next middleware
+    // } else {
+    //   result.badRequest(res, "Not authorized");
+    //   return;
+    // }
+
+    // To move to next middleware
+    next();
+  } catch (ex) {
+    result.internalError(res, "Oops something went wrong", ex);
     return;
   }
-};
+}
+
+// Extract the token from the request.
+function getRequestToken(req){
+  return (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
+}
+
+module.exports = authMiddleware;

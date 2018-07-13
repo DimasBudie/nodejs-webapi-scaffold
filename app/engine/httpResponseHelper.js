@@ -5,9 +5,9 @@ let httpResponseHelper = {
         res.json({ "message": message });
     },
 
-    internalError: function (res, message) {
+    internalError: function (res, message, error) {
         res.status(500);
-        res.json({ "message": message });
+        res.json({ "message": message, "error" : error });
     },
 
     notFound: function (res, message) {
