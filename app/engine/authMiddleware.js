@@ -51,7 +51,7 @@ let authMiddleware = (req, res, next) => {
 
 // Extract the token from the request.
 function getRequestToken(req){
-  return (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
+  return (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers["authorization"];
 }
 
 module.exports = authMiddleware;
