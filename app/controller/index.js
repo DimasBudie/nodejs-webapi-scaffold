@@ -8,6 +8,17 @@ const authController = require('./authController');
 const productController = require('./productController');
  
 // Routes that can be accessed by any one
+
+/**
+ * @api {get} /login/ Routes that can be accessed by any one
+ * @apiName GetUser
+ * @apiGroup User
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccess {String} firstname Firstname of the User.
+ * @apiSuccess {String} lastname  Lastname of the User.
+ */
 router.post('/login', authController.login);
  
 // Routes that can be accessed only by autheticated users
