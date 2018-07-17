@@ -10,11 +10,10 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use("/scripts", express.static(__dirname + "/node_modules/"));
 
-// Render index page
+// Render index page using EJS
 app.get('/', function(req, res) {
-  res.render('pages/index');
+ res.render('pages/index');
 });
-
 
 // Enable Cross Origin resource sharing.
 app.all('/*', (req, res, next) => {
