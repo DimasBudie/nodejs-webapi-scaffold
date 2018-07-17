@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use("/scripts", express.static(__dirname + "/node_modules/"));
 
-// Render api info page
+// Render index page
 app.get('/', function(req, res) {
   res.render('pages/index');
 });
