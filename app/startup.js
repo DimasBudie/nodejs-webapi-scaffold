@@ -6,6 +6,16 @@ const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 
+// Set the view engine and enale script base path navigation
+app.set('view engine', 'ejs');
+app.use("/scripts", express.static(__dirname + "/node_modules/"));
+
+// Render api info page
+app.get('/', function(req, res) {
+  res.render('pages/index');
+});
+
+
 // Enable Cross Origin resource sharing.
 app.all('/*', (req, res, next) => {
   // Set custom headers for CORS
