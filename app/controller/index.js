@@ -1,11 +1,11 @@
 "use strict";
 
-let express = require('express');
-let router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // Externalized the business logic for each route.
-let authController = require('./authController');
-let productController = require('./productController');
+const authController = require('./authController');
+const productController = require('./productController');
  
 // Routes that can be accessed by any one
 router.post('/login', authController.login);

@@ -1,6 +1,6 @@
-let tokenService = require("../service/tokenService");
-let userService = require("../service/userService");
-let result = require("../engine/httpResponseHelper");
+const tokenService = require("../service/tokenService");
+const userService = require("../service/userService");
+const result = require("../engine/httpResponseHelper");
 
 let authMiddleware = (req, res, next) => {
   try {

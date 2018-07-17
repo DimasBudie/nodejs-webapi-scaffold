@@ -1,7 +1,7 @@
-let express = require('express');
-let logger = require('morgan');
-let bodyParser = require('body-parser');
-let app = express();
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const app = express();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
