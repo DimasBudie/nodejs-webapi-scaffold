@@ -4,8 +4,9 @@ const secretKey = require("../engine/authSecretKey")();
 let tokenService = {
     // Generates a new token hash based on user data informed.
     generateToken: (username) => {
-        if (!username)
+        if (!username) {
             throw "username is mandatory";
+        }
 
         let expires = tokenService.expiresIn(1); // Days to expire
         let token = jwt.encode({
@@ -28,8 +29,9 @@ let tokenService = {
 
     // Decode a token.
     decodeToken: (token) => {
-        if (!token)
+        if (!token) {
             throw "Token is mandatory";
+        }
 
         return jwt.decode(token, secretKey);
     }

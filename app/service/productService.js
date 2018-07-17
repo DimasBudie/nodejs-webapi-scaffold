@@ -1,7 +1,7 @@
-let loki = require('lokijs');
-let uuidv1 = require('uuid/v1');
-let lokidb = new loki('example.db');
-let db = lokidb.addCollection('product');
+const loki = require('lokijs');
+const uuidv1 = require('uuid/v1');
+const lokidb = new loki('example.db');
+const db = lokidb.addCollection('product');
 
 let productService = {
 
@@ -17,6 +17,7 @@ let productService = {
     update: (product) => {
         if (id == '')
             throw 'Id is mandatory';
+
         validate(product);
         db.findAndUpdate({ 'id': id, })
     },
@@ -25,6 +26,7 @@ let productService = {
     delete: (id) => {
         if (id == '')
             throw 'Id is mandatory';
+            
         db.removeWhere({ 'id': id });
     },
 
@@ -46,13 +48,13 @@ let productService = {
 // has been informed.
 function validate(product) {
     if (product.name == '')
-        throw 'Product is mandatory.';
+        throw 'name is mandatory';
 
     if (product.description == '')
-        throw 'Product is mandatory.';
+        throw 'description is mandatory';
 
     if (product.quantity < 0)
-        throw 'Product is mandatory.';
+        throw 'quantity is mandatory';
 }
 
 module.exports = productService;

@@ -1,12 +1,12 @@
 let userService = {
     // Gets an user given his username and password.
     getByLogin: (username, password) => {
-        if (username == "") {
-            throw new Error("Field username is mandatory");
+        if (!username) {
+            throw "username is mandatory"
         }
 
-        if (password == "") {
-            throw new Error("Field password is mandatory");
+        if (!password) {
+            throw "password is mandatory";
         }
 
         // spoofing a userobject from the DB. 
@@ -15,7 +15,7 @@ let userService = {
         if (dbUser.name == username) {
             return dbUser;
         } else {
-            throw new Error("Invalid credentials");
+            throw "Invalid credentials";
         }
     },
 

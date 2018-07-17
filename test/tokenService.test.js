@@ -1,33 +1,33 @@
 const test = require("tape");
-const tokenService = require("../app/service/tokenService");
+const service = require("../app/service/tokenService");
 
-test("when username invalid then throw exception", (t) => {
+test("generateToken should throw exception if username invalid", (t) => {
     try {
-        tokenService.generateToken("");
+        service.generateToken("");
     } catch (error) {
         t.assert(error, "username is mandatory");
         t.end();
     }
 });
 
-test("when username valid then generate token", (t) => {
-    let result = tokenService.generateToken("any-username");
+test("generateToken should return a valid token if username is valid", (t) => {
+    let result = service.generateToken("any-username");
     t.assert(result.accessToken != "", "Token has been generated");
     t.assert(result.expiresIn > 0, "Expiration date set properly");
     t.assert(result.tokenType == "bearer", "Token type properly defined");
     t.end();
 });
 
-test("when token valid to decode then decode it", (t) => {
-    let token = tokenService.generateToken("any-username").accessToken;
-    let result = tokenService.decodeToken(token);
+test("decodeToken should parse a valid token", (t) => {
+    let token = service.generateToken("any-username").accessToken;
+    let result = service.decodeToken(token);
     t.assert(result.user == "any-username", "Token has been decoded");
     t.end();
 });
 
-test("when token invalid to decode then throw exception", (t) => {
+test("decodeToken should throw exception if token invalid", (t) => {
     try {
-        tokenService.decodeToken("")
+        service.decodeToken("")
     } catch (error) {
         t.assert(error, "Token is mandatory");
         t.end();
