@@ -5,7 +5,7 @@
         "start": "node app/startup",
         "build": "",
         "test": "tape ./test/*.test.js",
-        "doc" : "apidoc -i app/ -o apidoc/"
+        "doc": "apidoc -i app/ -o apidoc/"
     },
     "dependencies": {
         "apidoc": "^0.17.6",
