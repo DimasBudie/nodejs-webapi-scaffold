@@ -11,13 +11,22 @@ startHttpServer(app);
 
 // Setup all dependencies to render pages using EJS.
 function setupViewRender(app) {
-  // Set EJS as view engine and define /script as base path to consume components
+  // Set EJS as view engine.
   app.set('view engine', 'ejs');
+  
+  // Define "/script" as base path to consume components
   app.use("/scripts", express.static(__dirname + "/node_modules/"));
+  
+  // Define "/docs" as base to consume api documentation
+  app.use("/docs", express.static(__dirname + "/apidoc/")); 
 
   // By default render the index page using EJS folder structure /views/pages/
   app.get('/', function (req, res) {
     res.render('pages/index');
+  });
+
+  app.get('/api', function (req, res) {    
+    res.render('pages/documentation');
   });
 }
 
