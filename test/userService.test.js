@@ -1,5 +1,5 @@
 const test = require("tape");
-const service = require("../app/service/userService");
+const service = require("../service/userService");
 
 test("getByLogin should throw exception if username invalid", (t) => {
     try {

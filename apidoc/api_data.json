@@ -23,7 +23,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/controller/index.js",
+    "filename": "controller/index.js",
     "groupTitle": "General",
     "name": "PostLogin"
   },
@@ -42,7 +42,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/controller/index.js",
+    "filename": "controller/index.js",
     "groupTitle": "Product",
     "name": "GetApiV1Product"
   },
@@ -61,7 +61,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/controller/index.js",
+    "filename": "controller/index.js",
     "groupTitle": "Product",
     "name": "GetApiV1ProductId"
   }

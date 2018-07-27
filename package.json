@@ -2,10 +2,10 @@
     "name": "node-restapi",
     "version": "0.0.0",
     "scripts": {
-        "start": "node app/startup",
+        "start": "node startup",
         "build": "",
         "test": "tape ./test/*.test.js",
-        "doc": "apidoc -i app/ -o apidoc/"
+        "doc": "apidoc -i controller/ -o apidoc/"
     },
     "dependencies": {
         "apidoc": "^0.17.6",
