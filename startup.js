@@ -29,7 +29,7 @@ function setupViewRender(app) {
   });
 
   app.get('/api', function (req, res) {
-    res.render('pages/documentation');
+    res.render('pages/doc');
   });
 }
 
