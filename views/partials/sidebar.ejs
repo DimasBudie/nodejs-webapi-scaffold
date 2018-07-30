@@ -9,21 +9,18 @@
     </a>
     <a href="#" class="simple-text logo-normal">
         Banco Angelotti
-        <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
     </a>
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <li class="active ">
+        <li id="posicao-geral" class="active">
             <a href="/">
                 <i class="nc-icon nc-bank"></i>
                 <p>Posição Geral</p>
             </a>
         </li>
-        <li>
-            <a href="#">
+        <li id="cliente">
+            <a href="/cliente">
                 <i class="nc-icon nc-single-02"></i>
                 <p>Cliente</p>
             </a>
@@ -46,5 +43,11 @@
                 <p>Sair</p>
             </a>
         </li>
-    </ul>
+    </ul> 
 </div>
+<script>
+    $(document).ready(function () {        
+        // $('.sidebar-wrapper>ul>li').removeClass('active');
+        // $('.sidebar-wrapper #' + $('#active-menu').text()).addClass('active');
+    });
+  </script>

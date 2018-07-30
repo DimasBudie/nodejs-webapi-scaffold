@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <%- include('../partials/sidebar') %>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <%- include('../partials/topbar', {title : 'Cliente'}) %>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"></h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>Nome</th>
+                      <th>Cidade/UF</th>
+                      <th>Telefone</th>
+                      <th class="text-right">Empréstimo</th>
+                      <th class="text-right">Amortizado</th>
+                      <th>Adimplente</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Filipe Breno Viana</a></td>
+                        <td>Curitiba-PR</td>
+                        <td>47.655.403-2</td>
+                        <td class="text-right">R$23.000</td>
+                        <td class="text-right">R$7.500</td>
+                        <td>Sim</td>
+                      </tr>  
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Emanuel Geraldo Eduardo da Paz</td>
+                        <td>Curitiba-PR</td>
+                        <td>35.819.610-3</td>
+                        <td class="text-right">R$50.000</td>
+                        <td class="text-right">R$38.500</td>
+                        <td>Sim</td>
+                      </tr>   
+                      <tr class="table-danger">
+                        <td><a href="/cliente-detalhe?id=1">Yuri Murilo Farias</td>
+                        <td>Curitiba-PR</td>
+                        <td>23.813.759-4</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Não</td>
+                      </tr>  
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Anthony Edson Ian Almada</td>
+                        <td>Curitiba-PR</td>
+                        <td>28.654.134-8</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>  
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Enzo Isaac Luiz Galvão</td>
+                        <td>Curitiba-PR</td>
+                        <td>38.536.372-2</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>  
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Márcio Ian Souza</td>
+                        <td>Curitiba-PR</td>
+                        <td>49.612.334-8</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>  
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">João Nathan Figueiredo</td>
+                        <td>Curitiba-PR</td>
+                        <td>16.823.682-5</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>
+                      <tr class="table-danger">
+                        <td><a href="/cliente-detalhe?id=1">Carlos Eduardo Thomas</td>
+                        <td>Curitiba-PR</td>
+                        <td>47.422.038-2</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Não</td>
+                      </tr>  
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Tiago Theo Almada</td>
+                        <td>Miami-EUA</td>
+                        <td>15.582.641-4</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr> 
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Anderson Arthur Gonçalves</td>
+                        <td>Curitiba-PR</td>
+                        <td>31.294.804-9</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>    
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Osvaldo Hugo Samuel Martins</td>
+                        <td>Curitiba-PR</td>
+                        <td>16.984.720-2</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>  
+                      <tr class="table-danger">
+                        <td><a href="/cliente-detalhe?id=1">Levi Iago Osvaldo Silva</td>
+                        <td>Salvador-BA</td>
+                        <td>45.425.554-8</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Não</td>
+                      </tr>   
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">Henry Daniel Costa</td>
+                        <td>São Paulo-SP</td>
+                        <td>36.633.885-7</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>  
+                      <tr>
+                        <td><a href="/cliente-detalhe?id=1">César Otávio Filipe Oliveira</td>
+                        <td>Curitiba-PR</td>
+                        <td>26.811.221-6</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Sim</td>
+                      </tr>   
+                      <tr class="table-danger">
+                        <td><a href="/cliente-detalhe?id=1">Enrico Murilo das Neves</td>
+                        <td>Curitiba-PR</td>
+                        <td>13.287.584-6</td>
+                        <td class="text-right">R$15.000</td>
+                        <td class="text-right">R$2.200</td>
+                        <td>Não</td>
+                      </tr>                                                                                                                                                                                                                                                                                                                   
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <%- include('../partials/footer') %>
+      </footer>
+    </div>
+  </div>
+  <%- include('../partials/scripts') %>
+    <script>
+      $(document).ready(function () {
+        $('.table').DataTable();
+      });
+    </script>
+</body>
+
+</html>
