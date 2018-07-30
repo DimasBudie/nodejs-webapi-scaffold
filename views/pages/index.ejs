@@ -8,7 +8,7 @@
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
-      <% include ../partials/sidebar %>
+      <%- include('../partials/sidebar') %>
     </div>
     <div class="main-panel">
       <!-- Navbar -->
@@ -24,13 +24,63 @@
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-globe text-warning"></i>
+                      <i class="nc-icon nc-circle-10 text-warning"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Capacity</p>
-                      <p class="card-title">150GB
+                      <p class="card-category">Contratos Ativos</p>
+                      <p class="card-title">35</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i> Atualizado agora
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-time-alarm text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Contratos Pendentes</p>
+                      <p class="card-title">3</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i> Atualizado agora
+                </div>
+              </div>
+            </div>
+          </div>          
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-money-coins text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Montante Emprestado</p>
+                      <p class="card-title">R$265k
                         <p>
                     </div>
                   </div>
@@ -39,7 +89,7 @@
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <i class="fa fa-refresh"></i> Update Now
+                  <i class="fa fa-calendar-o"></i> Hoje
                 </div>
               </div>
             </div>
@@ -55,8 +105,8 @@
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Revenue</p>
-                      <p class="card-title">$ 1,345
+                      <p class="card-category">Consolidado Mês</p>
+                      <p class="card-title">R$37k
                         <p>
                     </div>
                   </div>
@@ -65,7 +115,7 @@
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <i class="fa fa-calendar-o"></i> Last day
+                  <i class="fa fa-calendar-o"></i> Hoje
                 </div>
               </div>
             </div>
@@ -76,13 +126,13 @@
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-vector text-danger"></i>
+                      <i class="nc-icon nc-money-coins text-success"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Errors</p>
-                      <p class="card-title">23
+                      <p class="card-category">Capital de Giro</p>
+                      <p class="card-title">R$90k
                         <p>
                     </div>
                   </div>
@@ -91,7 +141,7 @@
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <i class="fa fa-clock-o"></i> In the last hour
+                  <i class="fa fa-calendar-o"></i> Hoje
                 </div>
               </div>
             </div>
@@ -102,13 +152,13 @@
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-favourite-28 text-primary"></i>
+                      <i class="nc-icon nc-sound-wave text-danger"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Followers</p>
-                      <p class="card-title">+45K
+                      <p class="card-category">Taxa de Retorno</p>
+                      <p class="card-title">8% a.a
                         <p>
                     </div>
                   </div>
@@ -117,7 +167,33 @@
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <i class="fa fa-refresh"></i> Update now
+                  <i class="fa fa-calendar-o"></i> Hoje
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-ambulance text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Taxa Inadinplência</p>
+                      <p class="card-title">3%
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-calendar-o"></i> Hoje
                 </div>
               </div>
             </div>
@@ -127,8 +203,8 @@
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Users Behavior</h5>
-                <p class="card-category">24 Hours performance</p>
+                <h5 class="card-title">Empréstimos</h5>
+                <p class="card-category">Evolução mensal</p>
               </div>
               <div class="card-body ">
                 <canvas id=chartHours width="400" height="100"></canvas>
@@ -136,13 +212,13 @@
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <i class="fa fa-history"></i> Updated 3 minutes ago
+                  <i class="fa fa-info-circle"></i> Evolução de empréstimos realizados
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="visibility:hidden !important">
           <div class="col-md-4">
             <div class="card ">
               <div class="card-header ">
@@ -190,17 +266,17 @@
         </div>
       </div>
       <footer class="footer footer-black  footer-white ">
-        <% include ../partials/footer %>
+        <%- include('../partials/footer') %>
       </footer>
     </div>
   </div>
-  <% include ../partials/scripts %>
-  <script>
-    $(document).ready(function () {
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartsPages();
-    });
-  </script>
+  <%- include('../partials/scripts') %>
+    <script>
+      $(document).ready(function () {
+        // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+        demo.initChartsPages();
+      });
+    </script>
 </body>
 
 </html>
