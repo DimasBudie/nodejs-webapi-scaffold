@@ -13,19 +13,22 @@ startHttpServer(app);
 function setupViewRender(app) {
   // Set EJS as view engine.
   app.set('view engine', 'ejs');
-  
+
   // Define "/script" as base path to consume components
   app.use("/scripts", express.static(__dirname + "/node_modules/"));
-  
+
   // Define "/docs" as base to consume api documentation
-  app.use("/docs", express.static(__dirname + "/apidoc/")); 
+  app.use("/docs", express.static(__dirname + "/apidoc/"));
+
+  // Define "/assets" as base to consume themes
+  app.use("/assets", express.static(__dirname + "/views/assets"));
 
   // By default render the index page using EJS folder structure /views/pages/
   app.get('/', function (req, res) {
     res.render('pages/index');
   });
 
-  app.get('/api', function (req, res) {    
+  app.get('/api', function (req, res) {
     res.render('pages/documentation');
   });
 }
@@ -63,7 +66,7 @@ function setupRoutes(app) {
 }
 
 // Start the express server.
-function startHttpServer(app) {  
+function startHttpServer(app) {
   app.set('port', process.env.PORT || 3000);
   let server = app.listen(app.get('port'), () => {
     console.log('Server listening on port ' + server.address().port);
