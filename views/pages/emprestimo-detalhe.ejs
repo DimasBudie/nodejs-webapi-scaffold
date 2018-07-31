@@ -17,7 +17,123 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        EMPRESTIMOS DETALHE
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title"></h5>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" disabled placeholder="" value="Handerson Marinho">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Renda Bruta(R$)</label>
+                        <input type="text" class="form-control" disabled placeholder="" value="3.000,00">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Renda Líquida(R$) Estimada</label>
+                        <input type="text" class="form-control" disabled placeholder="" value="1.600,00">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Valor Desejado(R$)</label>
+                        <input type="text" class="form-control" placeholder="" value="5.000,00">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Prazo (meses)</label>
+                        <input type="number" class="form-control" placeholder="" value="12">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Taxa(% a.a)</label>
+                        <input type="text" class="form-control" placeholder="5" value="5">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Primeiro Vencimento</label>
+                        <input type="date" class="form-control" placeholder="" value="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="button" class="btn btn-primary">Calcular</button>
+                    </div>
+                  </div>
+                </form>
+                <hr/>
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <th>Data Pagamento</th>
+                          <th>Parcela(R$)</th>
+                          <th>Principal(R$)</th>
+                          <th>Juros(R$)</th>
+                          <th>Saldo(R$)</th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>10/01/2018</td>
+                            <td>470,00</td>
+                            <td>416,00</td>
+                            <td>44,00</td>
+                            <td>4.584,00</td>
+                          </tr>
+                          <tr>
+                            <td>10/02/2018</td>
+                            <td>470,00</td>
+                            <td>416,00</td>
+                            <td>44,00</td>
+                            <td>4.168,00</td>
+                          </tr>
+                          <tr>
+                            <td>10/03/2018</td>
+                            <td>470,00</td>
+                            <td>416,00</td>
+                            <td>44,00</td>
+                            <td>3.752,00</td>
+                          </tr>
+                          <tr>
+                            <td>10/04/2018</td>
+                            <td>470,00</td>
+                            <td>416,00</td>
+                            <td>44,00</td>
+                            <td>3.336,00</td>
+                          </tr>
+                          <tr>
+                            <td>10/05/2018</td>
+                            <td>470,00</td>
+                            <td>416,00</td>
+                            <td>44,00</td>
+                            <td>2.920,00</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <footer class="footer footer-black  footer-white ">
         <%- include('../partials/footer') %>
@@ -27,7 +143,7 @@
   <%- include('../partials/scripts') %>
     <script>
       $(document).ready(function () {
-        $('.table').DataTable();
+        //$('.table').DataTable();
       });
     </script>
 </body>
