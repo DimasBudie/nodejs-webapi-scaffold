@@ -24,12 +24,15 @@ function setupViewRender(app) {
   app.use("/assets", express.static(__dirname + "/views/assets"));
 
   // By default render the index page using EJS folder structure /views/pages/
-  app.get('/', function (req, res) { res.render('pages/posicao-geral'); });
+  app.get('/home', function (req, res) { res.render('pages/home'); });
   app.get('/api', function (req, res) { res.render('pages/doc'); });
   app.get('/cliente', function (req, res) { res.render('pages/cliente'); });
   app.get('/cliente-detalhe/:id', function (req, res) { res.render('pages/cliente-detalhe'); });
   app.get('/emprestimo', function (req, res) { res.render('pages/emprestimo'); });
-  app.get('/emprestimo-detalhe/:id', function (req, res) { res.render('pages/emprestimo-detalhe'); });
+  app.get('/emprestimo-novo/:id', function (req, res) { res.render('pages/emprestimo-novo'); });
+  app.get('/emprestimo-simula', function (req, res) { res.render('pages/emprestimo-simula'); });
+  app.get('/configuracao', function (req, res) { res.render('pages/configuracao'); });
+  app.get('/', function (req, res) { res.render('pages/login'); });
 }
 
 // Setup all routes used by the application.

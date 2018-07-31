@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body style="background-color: #24B4A4; margin-top:100px; overflow: hidden;">
+  <div class="wrapper wrapper-full-page ">
+    <div class="full-page section-image" filter-color="black" data-image="../assets/img/jan-sendereks.jpg">
+      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+      <div class="content">
+        <div class="container">
+          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+            <form class="form" method="" action="">
+              <div class="card card-login">
+                <div class="card-header ">
+                  <div class="card-header ">
+                    <div class="logo">
+                      <a href="#" class="simple-text text-center logo-mini">
+                        <div class="logo-image-small">
+                          <img src="../assets/img/app-logo.png">
+                        </div>
+                      </a>
+                    </div>
+                    <h3 class="header text-center">Banco Angelotti</h3>
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-single-02"></i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Usuário">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-key-25"></i>
+                      </span>
+                    </div>
+                    <input type="password" placeholder="Senha" class="form-control">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="" checked="">
+                        <span class="form-check-sign"></span>
+                        Lembrar minhas credenciais
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                  <a href="/home" class="btn btn-primary btn-block mb-3">Login</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+      </footer>
+      <div class="full-page-background" style="background-image: url(../assets/img/jan-sendereks.jpg) "></div>
+    </div>
+  </div>
+  <%- include('../partials/scripts') %>
+    <script>
+      $(document).ready(function () {
+
+      });
+    </script>
+</body>
+
+</html>

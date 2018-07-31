@@ -2,19 +2,19 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
 <div class="logo">
-    <a href="#" class="simple-text logo-mini">
+    <a href="/home" class="simple-text logo-mini">
         <div class="logo-image-small">
             <img src="../assets/img/app-logo.png">
         </div>
     </a>
-    <a href="#" class="simple-text logo-normal">
+    <a href="/home" class="simple-text logo-normal">
         Banco Angelotti
     </a>
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <li id="posicao-geral" class="active">
-            <a href="/">
+        <li id="home" class="active">
+            <a href="/home">
                 <i class="nc-icon nc-bank"></i>
                 <p>Posição Geral</p>
             </a>
@@ -32,16 +32,22 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="/emprestimo-simula">
+                <i class="nc-icon nc-tv-2"></i>
+                <p>Simulador</p>
+            </a>
+        </li>
+        <li>
+            <a href="/">
                 <i class="nc-icon nc-simple-remove"></i>
                 <p>Sair</p>
             </a>
         </li>
-    </ul> 
+    </ul>
 </div>
 <script>
-    $(document).ready(function () {        
+    $(document).ready(function () {
         // $('.sidebar-wrapper>ul>li').removeClass('active');
         // $('.sidebar-wrapper #' + $('#active-menu').text()).addClass('active');
     });
-  </script>
+</script>
