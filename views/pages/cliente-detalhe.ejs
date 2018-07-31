@@ -18,7 +18,63 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-4">
+            <div class="card card-user">
+              <div class="image">
+                <img src="../assets/img/header.jpg" alt="...">
+              </div>
+              <div class="card-body">
+                <div class="author">
+                  <a href="#">
+                    <img class="avatar border-gray" src="../assets/img/default-avatar.png" alt="...">
+                    <h5 class="title">José da Silva</h5>
+                  </a>
+                  <p class="description">
+                    Confiabilidade:
+                    <span class="badge badge-success">Muito Bom</span>
+                  </p>
+                </div>
+                <p class="description">
+                  <hr>
+                  <div>
+                    Renda Bruta: <label>R$ 3.500,00</label>
+                  </div>
+                  <div>
+                    Empréstimo Ativo: <label>Sim</label>
+                  </div>
+                  <div>
+                      Renda Livre (estimada): <label>R$ 1.200,00</label>
+                    </div>                  
+                </p>
+              </div>
+              <!-- <div class="card-footer">
+                <hr>
+                <div class="button-container">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-6 col-6 ml-auto">
+                      <h5>12
+                        <br>
+                        <small>Files</small>
+                      </h5>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                      <h5>2GB
+                        <br>
+                        <small>Used</small>
+                      </h5>
+                    </div>
+                    <div class="col-lg-3 mr-auto">
+                      <h5>24,6$
+                        <br>
+                        <small>Spent</small>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-8">
             <div class="card card-user">
               <div class="card-header">
                 <h5 class="card-title">Dados do Cliente</h5>
@@ -29,19 +85,19 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control" placeholder="" value="Nome do Cliente">
+                        <input type="text" class="form-control" placeholder="" value="José da Silva">
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label>Telefone</label>
-                        <input type="text" class="form-control" placeholder="" value="(41) 9-9123-3434">
+                        <input type="text" class="form-control" placeholder="(00) 0-0000-0000" value="">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" placeholder="email@email.com">
+                        <input type="email" class="form-control" placeholder="email@email.com" value="email@email.com">
                       </div>
                     </div>
                   </div>
@@ -63,13 +119,41 @@
                     <div class="col-md-4 px-1">
                       <div class="form-group">
                         <label>Estado</label>
-                        <input type="text" class="form-control" placeholder="" value="PR">
+                        <select class="form-control">
+                          <option value="AC">Acre</option>
+                          <option value="AL">Alagoas</option>
+                          <option value="AP">Amapá</option>
+                          <option value="AM">Amazonas</option>
+                          <option value="BA">Bahia</option>
+                          <option value="CE">Ceará</option>
+                          <option value="DF">Distrito Federal</option>
+                          <option value="ES">Espírito Santo</option>
+                          <option value="GO">Goiás</option>
+                          <option value="MA">Maranhão</option>
+                          <option value="MT">Mato Grosso</option>
+                          <option value="MS">Mato Grosso do Sul</option>
+                          <option value="MG">Minas Gerais</option>
+                          <option value="PA">Pará</option>
+                          <option value="PB">Paraíba</option>
+                          <option value="PR">Paraná</option>
+                          <option value="PE">Pernambuco</option>
+                          <option value="PI">Piauí</option>
+                          <option value="RJ">Rio de Janeiro</option>
+                          <option value="RN">Rio Grande do Norte</option>
+                          <option value="RS">Rio Grande do Sul</option>
+                          <option value="RO">Rondônia</option>
+                          <option value="RR">Roraima</option>
+                          <option value="SC">Santa Catarina</option>
+                          <option value="SP">São Paulo</option>
+                          <option value="SE">Sergipe</option>
+                          <option value="TO">Tocantins</option>
+                        </select>
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label>CEP</label>
-                        <input type="text" class="form-control" placeholder="86150-323">
+                        <input type="text" class="form-control" placeholder="00000-000">
                       </div>
                     </div>
                   </div>
@@ -80,18 +164,18 @@
                         <input type="text" class="form-control" placeholder="" value="040.654.985-87">
                       </div>
                     </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Renda Bruta (R$)</label>
+                        <input type="text" class="form-control" placeholder="3.500,00">
+                      </div>
+                    </div>
                     <div class="col-md-4 px-1">
                       <div class="form-group">
                         <label>Dt Nascimento</label>
                         <input type="date" class="form-control" placeholder="" value="20/08/1984">
                       </div>
                     </div>
-                    <!--<div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>CEP</label>
-                        <input type="number" class="form-control" placeholder="86150-323">
-                      </div>
-                    </div> -->
                   </div>
                   <div class="row">
                     <div class="col-md-12">

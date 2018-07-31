@@ -243,7 +243,7 @@ demo = {
     var speedCanvas = document.getElementById("speedChart");
 
     var dataFirst = {
-      data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
+      data: [20000, 18000, 58000, 51000, 76000, 6000, 0, 0, 0, 0, 0, 0],
       fill: false,
       borderColor: '#fbc658',
       backgroundColor: 'transparent',
@@ -254,7 +254,7 @@ demo = {
     };
 
     var dataSecond = {
-      data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
+      data: [220000, 198000, 175000, 190000, 210000, 215000, 195000, 195000, 195000, 195000, 195000, 195000],
       fill: false,
       borderColor: '#51CACF',
       backgroundColor: 'transparent',
@@ -265,7 +265,7 @@ demo = {
     };
 
     var speedData = {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
       datasets: [dataFirst, dataSecond]
     };
 
