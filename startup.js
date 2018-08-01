@@ -24,51 +24,14 @@ function setupViewRoutes(app) {
   // Define "/assets" as base to consume themes
   app.use("/assets", express.static(__dirname + "/views/assets"));
 
-  //--------------------
   app.use(session({
     secret: '2C44-4D44-WppQ38S',
     resave: true,
     saveUninitialized: true,
     maxAge: 3600000 * 24
   }));
-
-  // Authentication and Authorization Middleware
-  const auth = function (req, res, next) {
-    if (req.session && req.session.user === "admin" && req.session.admin)
-      return next();
-    else
-      res.render('pages/login', { isAuthValid: true });
-  };
-  //--------------------
-
-  // By default render the index page using EJS folder structure /views/pages/
-  app.get('/', (req, res) => { res.render('pages/login', { isAuthValid: true }); });
-  app.get('/home', auth, (req, res) => { res.render('pages/home'); });
-  app.get('/cliente', auth, (req, res) => { res.render('pages/cliente-lista'); });
-  app.get('/cliente-detalhe/:id', auth, (req, res) => { res.render('pages/cliente-detalhe'); });
-  app.get('/emprestimo', auth, (req, res) => { res.render('pages/emprestimo-lista'); });
-  app.get('/emprestimo-novo', auth, (req, res) => { res.render('pages/emprestimo-novo'); });
-  app.get('/emprestimo-simula', auth, (req, res) => { res.render('pages/emprestimo-simula'); });
-  app.get('/emprestimo-detalhe/:id', (req, res) => { res.render('pages/emprestimo-detalhe'); });
-  app.get('/configuracao', auth, (req, res) => { res.render('pages/configuracao'); });
-
-  app.post('/auth', (req, res, next) => {
-    let input = req.body;
-
-    if (!input.username || !input.password) {
-      res.render('pages/login', { isAuthValid: false });
-    }
-
-    if (input.username === 'admin' || input.password === 'admin') {
-      req.session.user = 'admin';
-      req.session.admin = true;
-      res.send('login success!');
-    } else {
-      res.render('pages/login', { isAuthValid: false });
-    }
-
-  });
-
+  
+  app.use('/', require('./page-controller'));
 }
 
 // Setup all routes to serve api functions.
