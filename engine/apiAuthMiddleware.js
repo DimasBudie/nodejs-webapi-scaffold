@@ -2,7 +2,7 @@ const tokenService = require("../service/tokenService");
 const userService = require("../service/userService");
 const result = require("../engine/httpResponseHelper");
 
-let authMiddleware = (req, res, next) => {
+let apiAuthMiddleware = (req, res, next) => {
   try {
 
     // When performing a cross domain request, will recieve
@@ -54,4 +54,4 @@ function getRequestToken(req){
   return (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers["authorization"];
 }
 
-module.exports = authMiddleware;
+module.exports = apiAuthMiddleware;

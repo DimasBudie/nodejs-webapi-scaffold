@@ -26,7 +26,7 @@ function setRoutesForHome(router) {
 
 function setRoutesForCliente(router) {
     router.get('/cliente', auth, clienteController.index);
-    router.get('/cliente-detalhe/:id', auth, clienteController.getById);
+    router.get('/cliente-detalhe/:id', auth, clienteController.detalhe);
 }
 
 function setRoutesForEmprestimo(router) {

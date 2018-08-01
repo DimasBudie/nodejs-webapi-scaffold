@@ -12,7 +12,7 @@ let clienteController = {
      * Pesquisa cliente com base no id informado e retorna
      * pagina de detalhes.
      */
-    getById: (req, res) => {
+    detalhe: (req, res) => {
         res.render('pages/cliente-detalhe');
     },
 

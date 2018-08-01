@@ -26,7 +26,7 @@ function setRouteAuth(router) {
      *    "tokenType": "bearer"
      * } 
      */
-    router.post('/login', authController.login);
+    router.post('/api/login', authController.login);
 }
 
 function setRouteProduct(router) {

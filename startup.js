@@ -5,43 +5,45 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(logger('dev'));
-setupViewRoutes(app);
-setupApiRoutes(app);
-startHttpServer(app);
+configPage(app);
+configApi(app);
+startServer(app);
 
-// Setup all routes to serve pages using EJS.
-function setupViewRoutes(app) {
+// Configura todas as rodas de paginas.
+function configPage(app) {
 
-  // Parse body request as url encoded.
+  // Parser para serializar formulários.
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  // Set EJS as view engine.
+  // Configura o EJS como view padrão.
   app.set('view engine', 'ejs');
-
-  // Define "/script" as base path to consume components
+  
+  // Configura o path "/script" como base para os pacotes npm.
   app.use("/scripts", express.static(__dirname + "/node_modules/"));
-
-  // Define "/assets" as base to consume themes
+  
+  // Configura o path "/assets" como base para resolver css.
   app.use("/assets", express.static(__dirname + "/views/assets"));
 
+  // Configuração do session-express usado para autenticação das páginas.
   app.use(session({
     secret: '2C44-4D44-WppQ38S',
     resave: true,
     saveUninitialized: true,
-    maxAge: 3600000 * 24
+    maxAge: 3600000 * 24  // Sessão de login expira em 24h
   }));
   
-  app.use('/', require('./page-controller'));
+  // Adiciona as controlers de pagina ao pipeline.
+  app.use('/', require('./controller-page'));
 }
 
-// Setup all routes to serve api functions.
-function setupApiRoutes(app) {
-
-  // Parse body request as json.
+// Configuração das rotas de api.
+function configApi(app) {
+  
+  // Parser utilziado nos requests.
   app.use(bodyParser.json());
 
-  app.all('/*', (req, res, next) => {
-    // Set custom headers for CORS
+  // Configura os header e CORS.
+  app.all('/*', (req, res, next) => {    
     res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-type,Accept,Authorization');
@@ -53,20 +55,19 @@ function setupApiRoutes(app) {
     }
   });
 
-  // Auth Middleware - This will check if the token is valid
-  // Only the requests that start with /api/v1/* will be checked for the token.
-  // Any URL's that do not follow the below pattern should be avoided unless you 
-  // are sure that authentication is not needed.
-  app.all('/api/v1/*', [require('./engine/authMiddleware')]);
-
-  // Define "/docs" as base to consume api documentation
+  // Middleware responsavel por validar o token recebido no request
+  // somente rotas iniciadas em '/api/v1/*' serão verificadas com token.
+  // Qualquer URL que não segue essa rota estará aberta para acesso.
+  app.all('/api/v1/*', [require('./engine/apiAuthMiddleware')]);
+  
+  // Configura '/docs' como base para retornar a documentação da api gerada com apidoc.
   app.use("/docs", express.static(__dirname + "/apidoc/"));
   app.get('/api', (req, res) => { res.render('pages/doc'); });
 
-  // The list of routes for the application. 
-  app.use('/', require('./controller'));
+  // Adiciona as controlers de api ao pipeline.
+  app.use('/', require('./controller-api'));
 
-  // If no route is matched by now, it must be a 404
+  // Se a rota requisitada não resolver retorna 404
   app.use((req, res, next) => {
     let err = new Error('Not Found');
     err.status = 404;
@@ -74,8 +75,8 @@ function setupApiRoutes(app) {
   });
 }
 
-// Start the express server.
-function startHttpServer(app) {
+// Inicia o servidor
+function startServer(app) {
   app.set('port', process.env.PORT || 3000);
   let server = app.listen(app.get('port'), () => {
     console.log('Server listening on port ' + server.address().port);
