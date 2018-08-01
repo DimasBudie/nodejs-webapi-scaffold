@@ -12,7 +12,7 @@
       <div class="content">
         <div class="container">
           <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-            <form class="form" method="" action="">
+            <form class="form" method="POST" action="/auth">
               <div class="card card-login">
                 <div class="card-header ">
                   <div class="card-header ">
@@ -33,7 +33,7 @@
                         <i class="nc-icon nc-single-02"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Usuário">
+                    <input type="text" name="username" class="form-control" required placeholder="Usuário">
                   </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -41,7 +41,7 @@
                         <i class="nc-icon nc-key-25"></i>
                       </span>
                     </div>
-                    <input type="password" placeholder="Senha" class="form-control">
+                    <input type="password" name="password" placeholder="Senha" required class="form-control">
                   </div>
                   <br>
                   <div class="form-group">
@@ -55,7 +55,15 @@
                   </div>
                 </div>
                 <div class="card-footer ">
-                  <a href="/home" class="btn btn-primary btn-block mb-3">Login</a>
+                  <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+                  <% if(isAuthValid == false){ %>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                      <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="nc-icon nc-simple-remove"></i>
+                      </button>
+                      <span>Usuário ou senha inválidos</span>
+                    </div>
+                    <% } %>
                 </div>
               </div>
             </form>
@@ -68,11 +76,8 @@
     </div>
   </div>
   <%- include('../partials/scripts') %>
-    <script>
-      $(document).ready(function () {
-
-      });
-    </script>
+  <script>
+  </script>
 </body>
 
 </html>
