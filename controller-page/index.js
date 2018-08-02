@@ -7,6 +7,7 @@ const homeController = require('./home-controller');
 const clienteController = require('./cliente-controller');
 const emprestimoController = require('./emprestimo-controller');
 const configuracaoController = require('./configuracao-controller');
+const investidorController = require('./investidor-controller');
 
 const auth = authController.validateAuth;
 setRoutesForAuth(router);
@@ -14,6 +15,7 @@ setRoutesForHome(router);
 setRoutesForCliente(router);
 setRoutesForEmprestimo(router);
 setRoutesForConfiguracao(router);
+setRoutesForInvestidor(router);
 
 function setRoutesForAuth(router) {
     router.get('/', authController.index);
@@ -38,6 +40,11 @@ function setRoutesForEmprestimo(router) {
 
 function setRoutesForConfiguracao(router){
     router.get('/configuracao', auth, configuracaoController.index);
+}
+
+function setRoutesForInvestidor(router){
+    router.get('/investidor', auth, investidorController.index);
+    router.get('/investidor-detalhe', auth, investidorController.detalhe);
 }
 
 module.exports = router;

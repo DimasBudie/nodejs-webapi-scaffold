@@ -1,0 +1,5 @@
+
+Calculo de juros
+http://codigofonte.com.br/wp-content/uploads/legado/codigos/1807/CalculadoraEmprestimo.html
+http://jsfiddle.net/roderick/dym05hsy/
+
