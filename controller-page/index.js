@@ -20,6 +20,7 @@ setRoutesForInvestidor(router);
 function setRoutesForAuth(router) {
     router.get('/', authController.index);
     router.post('/login', authController.login);
+    router.get('/logout', authController.logout);
 }
 
 function setRoutesForHome(router) {

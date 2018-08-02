@@ -40,6 +40,14 @@ let authController = {
             res.render('pages/login', { isAuthValid: true });
     },
 
+    /**
+     * Encerra a sessão do usuário e redireciona para a pagina de login.
+     */
+    logout : (req, res) => {
+        req.session.destroy();
+        res.render('pages/login', { isAuthValid: true });
+    },
+
 }
 
 module.exports = authController;
