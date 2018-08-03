@@ -21,7 +21,7 @@ let userService = {
 
     // Check if informed username exists in database.
     getByUsername: (username) => {
-        if(!username){
+        if (!username) {
             throw "username is mandatory";
         }
 
