@@ -2,12 +2,12 @@
 
 const express = require('express');
 const router = express.Router();
-const authController = require('./auth-controller');
-const homeController = require('./home-controller');
-const clienteController = require('./cliente-controller');
-const emprestimoController = require('./emprestimo-controller');
-const configuracaoController = require('./configuracao-controller');
-const investidorController = require('./investidor-controller');
+const authController = require('./auth.controller');
+const homeController = require('./home.controller');
+const clienteController = require('./cliente.controller');
+const emprestimoController = require('./emprestimo.controller');
+const configuracaoController = require('./configuracao.controller');
+const investidorController = require('./investidor.controller');
 
 const auth = authController.validateAuth;
 setRoutesForAuth(router);

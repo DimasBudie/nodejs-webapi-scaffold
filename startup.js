@@ -1,3 +1,4 @@
+const appconfig = require('./appconfig');
 const mongoose = require('mongoose');
 const express = require('express');
 const session = require('express-session');
@@ -12,45 +13,41 @@ configDatabase();
 startServer(app);
 
 /**
- * Configuração de rotas e dependencias das páginas.
+ * Config page routes and dependencies
  * @param {*} app 
  */
 function configPage(app) {
 
-  // Parser para serializar formulários.
+  // Set default parser and engine used to render pages.
   app.use(bodyParser.urlencoded({ extended: true }));
-
-  // Configura o EJS como view padrão.
   app.set('view engine', 'ejs');
 
-  // Configura o path "/script" como base para os pacotes npm.
-  app.use("/scripts", express.static(__dirname + "/node_modules/"));
-
-  // Configura o path "/assets" como base para resolver css.
+  // Set alias to resolve internal folders.
+  app.use("/scripts", express.static(__dirname + "/node_modules/"));  
   app.use("/assets", express.static(__dirname + "/views/assets"));
-
-  // Configuração do session-express usado para autenticação das páginas.
+  
+  // Set session-express params to use during page sessions.
   app.use(session({
-    secret: '2C44-4D44-WppQ38S',
+    secret: appconfig.webSessionSecretKey,
     resave: true,
     saveUninitialized: true,
-    maxAge: 3600000 * 24  // Sessão de login expira em 24h
+    maxAge: 3600000 * 24  // Expires in 24 hours
   }));
 
-  // Adiciona as controlers de pagina ao pipeline.
+  // Add page controles to the pipeline.
   app.use('/', require('./controller-page'));
 }
 
 /**
- * Configuração das rotas de dependencias de api.
+ * Config api routes and dependencies.
  * @param {*} app 
  */
 function configApi(app) {
 
-  // Parser utilziado nos requests.
+  // Set default parser.
   app.use(bodyParser.json());
 
-  // Configura os header e CORS.
+  // Config CORS and http Header.
   app.all('/*', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -63,19 +60,19 @@ function configApi(app) {
     }
   });
 
-  // Middleware responsavel por validar o token recebido no request
-  // somente rotas iniciadas em '/api/v1/*' serão verificadas com token.
-  // Qualquer URL que não segue essa rota estará aberta para acesso.
+  // Middleware used to validate token received during requests
+  // only routes started with /api/v1/* will be checked.
+  // Any route out of that range will be public.
   app.all('/api/v1/*', [require('./engine/apiAuthMiddleware')]);
 
-  // Configura '/docs' como base para retornar a documentação da api gerada com apidoc.
+  // Set alias to resolve internal folders.
   app.use("/docs", express.static(__dirname + "/apidoc/"));
   app.get('/api', (req, res) => { res.render('pages/doc'); });
 
-  // Adiciona as controlers de api ao pipeline.
+  // Add api controlers to the pipeline.
   app.use('/', require('./controller-api'));
 
-  // Se a rota requisitada não resolver retorna 404
+  // 404 in case of route not found.
   app.use((req, res, next) => {
     let err = new Error('Not Found');
     err.status = 404;
@@ -84,27 +81,16 @@ function configApi(app) {
 }
 
 /**
- * Configurações de banco de dados.
+ * Database configuration and connection.
  */
 function configDatabase() {
-  mongoose.connect('mongodb://localhost/banco-angelotti-db');  //'mongodb://usuario:senha@host/base'    
+  mongoose.connect(appconfig.database);
   mongoose.connection.on('error', console.error.bind(console, 'Database connection error:'));
   mongoose.connection.once('open', function () {
     console.log('Database connected');
   });
 
-  // let Schema = mongoose.Schema;
-
-  // var userDataSchema = new Schema({
-  //   nome: String,
-  //   email: String,
-  //   telefone: String
-  // }, { collection: 'contatos' });
-
-  // var Contatos = mongoose.model('UserData', userDataSchema);
-
-
-  var Contato = require('./model/contato-model');
+  var Contato = require('./model/contato.model');
   var item = {
     nome: 'req.body.nome',
     email: 'req.body.email',
@@ -112,15 +98,15 @@ function configDatabase() {
   };
   
   var data = new Contato(item);
-  data.save();
-
-  Contato.find((err, data) => {
-    console.log(data);
-  });
+    data.save();
+  
+  // Contato.find((err, data) => {
+  //   console.log(data);
+  // });
 }
 
 /**
- * Inicia o servidor http.
+ * Start htto server.
  * @param {*} app 
  */
 function startServer(app) {

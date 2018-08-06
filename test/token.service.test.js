@@ -1,5 +1,5 @@
 const test = require("tape");
-const service = require("../service/tokenService");
+const service = require("../service/token.service");
 
 test("generateToken should throw exception if username invalid", (t) => {
     try {
