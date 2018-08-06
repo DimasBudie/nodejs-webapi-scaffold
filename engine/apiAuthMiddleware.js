@@ -1,5 +1,5 @@
 const tokenService = require("../service/token.service");
-const userService = require("../service/user.service");
+const userService = require("../service/usuario.service");
 const result = require("../engine/httpResponseHelper");
 
 let apiAuthMiddleware = (req, res, next) => {

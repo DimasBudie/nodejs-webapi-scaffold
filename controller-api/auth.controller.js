@@ -1,6 +1,6 @@
 const result = require("../engine/httpResponseHelper");
 const tokenService = require("../service/token.service");
-const userService = require("../service/user.service");
+const userService = require("../service/usuario.service");
 
 let authController = {
 
