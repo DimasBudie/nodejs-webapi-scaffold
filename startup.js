@@ -23,9 +23,9 @@ function configPage(app) {
   app.set('view engine', 'ejs');
 
   // Set alias to resolve internal folders.
-  app.use("/scripts", express.static(__dirname + "/node_modules/"));  
+  app.use("/scripts", express.static(__dirname + "/node_modules/"));
   app.use("/assets", express.static(__dirname + "/views/assets"));
-  
+
   // Set session-express params to use during page sessions.
   app.use(session({
     secret: appconfig.webSessionSecretKey,
@@ -90,19 +90,23 @@ function configDatabase() {
     console.log('Database connected');
   });
 
-  var Contato = require('./model/contato.model');
-  var item = {
-    nome: 'req.body.nome',
-    email: 'req.body.email',
-    telefone: 'req.body.telefone'
-  };
-  
-  var data = new Contato(item);
-    data.save();
-  
-  // Contato.find((err, data) => {
-  //   console.log(data);
-  // });
+  //--------------------------------------
+  // var moment = require('moment');
+  // var db = require('./repository/investidor.repository');
+  // var item = {
+  //   nome: 'Handerson Marinho',
+  //   taxa: '2.0',
+  //   cpf: '040.768.809.54',   
+  //   saldo : '1.000,00',
+  //   operacoes: [{
+  //     data : moment().format('DD/MM/YYYY'),
+  //     valor : '1.000,00',
+  //     tipo : 'CRED'
+  //   }]
+  // };
+  // db.create(item);
+  // console.log(db.getAll());
+  //--------------------------------------
 }
 
 /**

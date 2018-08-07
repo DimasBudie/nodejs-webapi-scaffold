@@ -28,24 +28,17 @@
                 <table class="table">
                   <thead class=" text-primary">
                     <th>Nome</th>
-                    <th>Taxa(%a.a)</th>
+                    <th>Taxa(%a.m)</th>
                     <th>Saldo(R$)</th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        Filipe Breno Viana
-                      </td>
-                      <td>1.5</td>
-                      <td>30.000,00</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Renato Fonseca
-                      </td>
-                      <td>2</td>
-                      <td>68.000,00</td>
-                    </tr>
+                    <% list.forEach((item) => { %>
+                      <tr>
+                        <td><%= item.nome %></td>
+                        <td><%= item.taxa %></td>
+                        <td><%= item.saldo %></td>
+                      </tr>
+                      <% }); %>
                   </tbody>
                 </table>
               </div>
@@ -54,21 +47,21 @@
           <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Extrato</h4>
+                <h4 class="card-title">Novo</h4>
               </div>
               <div class="card-body">
-                <form>
+                <form method="POST" action="/create">
                   <div class="row">
                     <div class="col-md-8 pr-1">
                       <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control" placeholder="" value="Filipe Breno Viana">
+                        <input name="nome" type="text" class="form-control" required placeholder="Nome do Investidor" value="">
                       </div>
                     </div>
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Taxa (%a.a)</label>
-                        <input type="text" class="form-control" placeholder="1.5" value="">
+                        <input name="taxa" type="text" class="form-control" required placeholder="1.5" value="">
                       </div>
                     </div>
                   </div>
@@ -76,36 +69,36 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>CPF</label>
-                        <input type="text" class="form-control" placeholder="" value="040.584.952-87">
+                        <input name="cpf" type="text" class="form-control" required placeholder="000.000.000-00" value="">
                       </div>
                     </div>
                     <div class="col-md-5 pr-1">
-                        <div class="form-group">
-                          <label>Saldo (R$)</label>
-                          <input type="text" class="form-control" disabled placeholder="" value="30.000,00">
-                        </div>
+                      <div class="form-group">
+                        <label>Saldo (R$)</label>
+                        <input type="text" class="form-control" disabled placeholder="" value="0,00">
                       </div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Valor (R$)</label>
-                        <input type="text" class="form-control" placeholder="1.000,00" value="">
+                        <input name="operacoes[valor]" type="text" required class="form-control" placeholder="0,00" value="">
                       </div>
                     </div>
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Operação</label>
-                        <select class="form-control">                          
-                          <option value="SE">Crédito</option>
-                          <option value="TO">Débito</option>
+                        <select name="operacoes[tipo]" class="form-control">
+                          <option value="CRED">Crédito</option>
+                          <option value="DEBT">Débito</option>
                         </select>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                        <button type="reset" class="btn btn-secondary">Limpar</button>
+                      <button type="reset" class="btn btn-secondary">Limpar</button>
                       <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                   </div>

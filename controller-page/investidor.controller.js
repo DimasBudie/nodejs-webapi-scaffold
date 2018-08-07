@@ -1,13 +1,30 @@
+let service = require('../service/investidor.service');
 
-let investidorController = {
+module.exports = {
 
-    /**
-     * Renderiza a pagina inicial.
-     */
-    index: (req, res) => {
-        res.render('pages/investidor-lista');
+    index: async (req, res) => {
+        let list = await service.getAll();
+        res.render('pages/investidor-lista', {list : list});
+    },
+
+    create: async (req, res) => {
+        let input = req.body;
+
+        console.log(input);
+
+        await service.create({
+            nome: input.nome,
+            taxa: input.taxa,
+            cpf: input.cpf,   
+            saldo : '0',
+            operacoes: [{
+              valor : input.valor,
+              tipo : input.tipo
+            }]
+        })
+
+        let list = await service.getAll();
+        res.render('pages/investidor-lista', {list : list});
     },
 
 }
-
-module.exports = investidorController;
