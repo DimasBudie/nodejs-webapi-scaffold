@@ -9,7 +9,7 @@ module.exports = {
                 taxaInvestidor: '2',
                 taxaEmprestimo: '2'
             };       
-            return await repo.create(config);
+            config = await repo.create(config);
         }
         return config;        
     },

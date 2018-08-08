@@ -15,13 +15,18 @@ module.exports = {
             cpf: input.cpf,   
             saldo : '0',
             operacoes: [{
-              valor : input.valor,
-              tipo : input.tipo
+              valor : input.operacoes.valor,
+              tipo : input.operacoes.tipo
             }]
         })
 
         let list = await service.getAll();
         res.render('pages/investidor-lista', {list : list});
+    },
+
+    detail: async (req, res) => {
+        //let input = req.params;
+        res.render('pages/investidor-detalhe');
     },
 
 }

@@ -1,4 +1,5 @@
 const db = require('../repository/investidor.repository');
+const math = require('mathjs');
 
 module.exports = {
 
@@ -19,9 +20,14 @@ module.exports = {
             throw "Operação é obrigatório";
         }
 
-        investidor.saldo =
-            parseFloat(investidor.saldo) +
-            parseFloat(investidor.operacoes[0].valor);
+        // investidor.saldo =
+        //     parseFloat(investidor.saldo) +
+        //     parseFloat(investidor.operacoes[0].valor);
+
+        console.log(investidor)
+        investidor.saldo = math.chain(investidor.saldo)
+                               .add(investidor.operacoes[0].valor)
+                               .done();
 
         return await db.create(investidor);
     },

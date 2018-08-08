@@ -46,7 +46,8 @@ function setRoutesForConfiguracao(router){
 
 function setRoutesForInvestidor(router){
     router.get('/investidor', auth, investidorController.index);
-    router.post('/create', auth, investidorController.create);
+    router.post('/investidor-novo', auth, investidorController.create);
+    router.get('/investidor-detalhe/:id', auth, investidorController.detail);
 }
 
 module.exports = router;

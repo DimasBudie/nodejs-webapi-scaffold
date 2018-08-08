@@ -18,7 +18,7 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title">Investidores Associados</h4>
@@ -26,114 +26,34 @@
               </div>
               <div class="card-body">
                 <table class="table">
-                  <thead class=" text-primary">
+                  <thead class=" text-primary">                    
                     <th>Nome</th>
+                    <th>Cpf</th>
                     <th>Taxa(%a.m)</th>
                     <th>Saldo(R$)</th>
+                    <th>#</th>
                   </thead>
                   <tbody>
-                    <% list.forEach((item) => { %>
-                      <tr>
-                        <td><%= item.nome %></td>
-                        <td><%= item.taxa %></td>
-                        <td><%= item.saldo %></td>
-                      </tr>
-                      <% }); %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">Novo</h4>
-              </div>
-              <div class="card-body">
-                <form method="POST" action="/create">
-                  <div class="row">
-                    <div class="col-md-8 pr-1">
-                      <div class="form-group">
-                        <label>Nome</label>
-                        <input name="nome" type="text" class="form-control" required placeholder="Nome do Investidor" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>Taxa (%a.a)</label>
-                        <input name="taxa" type="text" class="form-control" required placeholder="1.5" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>CPF</label>
-                        <input name="cpf" type="text" class="form-control" required placeholder="000.000.000-00" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Saldo (R$)</label>
-                        <input type="text" class="form-control" disabled placeholder="" value="0,00">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Valor (R$)</label>
-                        <input name="operacoes[valor]" type="text" required class="form-control" placeholder="0,00" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Operação</label>
-                        <select name="operacoes[tipo]" class="form-control">
-                          <option value="CRED">Crédito</option>
-                          <option value="DEBT">Débito</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="update ml-auto mr-auto">
-                      <button type="reset" class="btn btn-secondary">Limpar</button>
-                      <button type="submit" class="btn btn-primary">Salvar</button>
-                    </div>
-                  </div>
-                </form>
-                <hr/>
-                <table class="table">
-                  <thead class=" text-primary">
-                    <th>Data</th>
-                    <th>Transação(R$)</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        12/03/2018
-                      </td>
-                      <td>(+) 10.000,00</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        25/05/2018
-                      </td>
-                      <td>(+) 16.000,00</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        07/06/2018
-                      </td>
-                      <td>(-) 5.000,00</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        29/07/2018
-                      </td>
-                      <td>(+) 9.000,00</td>
-                    </tr>
+                    <% console.log(list) %>
+                      <% list.forEach(item => { %>
+                        <tr>
+                          <td>
+                            <%= item.nome %>
+                          </td>
+                          <td>
+                            <%= item.cpf %>
+                          </td>
+                          <td>
+                            <%= item.taxa %>
+                          </td>
+                          <td>
+                            <%= item.saldo %>
+                          </td>
+                          <td>
+                              <a href="/investidor-detalhe/<%= item._id %>" class="btn btn-primary">Visualizar</a>                              
+                            </td>                          
+                        </tr>
+                        <% }); %>
                   </tbody>
                 </table>
               </div>
