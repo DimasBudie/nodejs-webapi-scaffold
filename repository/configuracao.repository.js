@@ -2,22 +2,28 @@ const Configuracao = require("../model/configuracao.model");
 
 module.exports = {
 
-    getAll: () => {
+    get: () => {
         return new Promise(res => {
             Configuracao
-                .find((err, doc) => {
+                .findOne((err, doc) => {                    
                     res(doc);
                 });
         });
     },
 
-    create: (investidor) => {
-        var db = new Investidor(investidor);
-        db.create();
+    create: (config) => {
+        return new Promise(res => {
+            new Configuracao(config).save((err, doc) => {
+                return doc != null ? res(doc) : res(null);
+            });
+        });
     },
 
-    update: (investidor) => {
-        var db = new Investidor(investidor);
-        db.update();
+    update: (config) => {
+        return new Promise(res => {
+            Configuracao.update(config, (err, doc) => {                
+                return doc != null ? res(config) : res(null);
+            });
+        });
     },
 }

@@ -17,19 +17,54 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title"></h4>
-                </div>
-                <div class="card-body">
-                  Configurações
-                </div>
+        <div class="row">
+          <div class="col-md-12">
+            <% if(msg != null){ %>
+              <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="nc-icon nc-simple-remove"></i>
+                </button>
+                <span>
+                  <%= msg %>
+                </span>
               </div>
-            </div>
+              <% } %>
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title"></h4>
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="/save">
+                      <h3>
+                        <span>Taxas %</span>
+                      </h3>
+                      <div class="row">
+                        <div class="col-md-6 pr-1">
+                          <div class="form-group">
+                            <label>Remuneração Investidor(%a.m)</label>
+                            <input name="taxaInvestidor" type="text" class="form-control" placeholder="" value="<%= config.taxaInvestidor %>" />
+                          </div>
+                        </div>
+                        <div class="col-md-6 pr-1">
+                          <div class="form-group">
+                            <label>Juros Empréstimo (%a.m)</label>
+                            <input name="taxaEmprestimo" type="text" class="form-control" placeholder="" value="<%= config.taxaEmprestimo %>" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="update ml-auto mr-auto">
+                          <input name="_id" type="hidden" class="form-control" value="<%= config._id %>" />
+                          <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                      </div>
+                    </form>
+                    <hr/>
+                  </div>
+                </div>
           </div>
         </div>
+      </div>
       <footer class="footer footer-black  footer-white ">
         <%- include('../partials/footer') %>
       </footer>

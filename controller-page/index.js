@@ -41,6 +41,7 @@ function setRoutesForEmprestimo(router) {
 
 function setRoutesForConfiguracao(router){
     router.get('/configuracao', auth, configuracaoController.index);
+    router.post('/save', auth, configuracaoController.save);
 }
 
 function setRoutesForInvestidor(router){

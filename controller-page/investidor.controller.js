@@ -9,9 +9,6 @@ module.exports = {
 
     create: async (req, res) => {
         let input = req.body;
-
-        console.log(input);
-
         await service.create({
             nome: input.nome,
             taxa: input.taxa,
