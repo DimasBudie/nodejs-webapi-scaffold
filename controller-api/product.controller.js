@@ -1,36 +1,27 @@
-const service = require('../service/product.service');
-
-let productController = {
+module.exports = {
 
   getAll: (req, res) => {
-    let list = service.getAll();
-    res.json(list);
+    res.json('[{}]');
   },
 
   getOne: (req, res) => {
     var id = req.params.id;
-    let data = service.getById(id);
-    res.json(data);
+    res.json('{}');
   },
 
   create: (req, res) => {
     let product = req.body;
-    product = service.create(product);
-    res.json(product);
+    res.json('{}');
   },
 
   update: (req, res) => {
     var product = req.body;
     product.id = req.params.id;
-    product = service.update(product);
-    res.json(product);
+    res.json('{}');
   },
 
   delete: (req, res) => {
     var id = req.params.id;
-    service.delete(id);
     res.json(true);
   }
 };
-
-module.exports = productController;

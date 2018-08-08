@@ -1,4 +1,4 @@
-let Investidor = require("../model/investidor.model");
+const Investidor = require("../model/investidor.model");
 
 module.exports = {
 

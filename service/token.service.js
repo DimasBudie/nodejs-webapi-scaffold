@@ -1,7 +1,8 @@
 const jwt = require("jwt-simple");
 const secretKey = require("../engine/authSecretKey")();
 
-let tokenService = {
+module.exports = {
+    
     // Generates a new token hash based on user data informed.
     generateToken: (username) => {
         if (!username) {
@@ -36,5 +37,4 @@ let tokenService = {
         return jwt.decode(token, secretKey);
     }
 
-}
-module.exports = tokenService;
+}; 

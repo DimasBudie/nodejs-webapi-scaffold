@@ -13,6 +13,6 @@ let Investidor = new Schema({
   cpf: String,    // 040.654.986-87
   saldo: String,  // 1.000,00
   operacoes: [Operacao]
-}, { collection: 'investidores' });
+}, { collection: 'Investidor' });
 
 module.exports = mongoose.model('Investidor', Investidor);

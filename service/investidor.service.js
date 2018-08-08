@@ -1,4 +1,4 @@
-let db = require('../repository/investidor.repository');
+const db = require('../repository/investidor.repository');
 
 module.exports = {
 
