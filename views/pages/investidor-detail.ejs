@@ -56,7 +56,11 @@
                       <div class="col-md-5 pr-1">
                         <div class="form-group">
                           <label>CPF</label>
-                          <input name="cpf" type="text" class="form-control" required placeholder="000.000.000-00" value="<%= data.cpf %>" />
+                          <% if(data.id == null){ %>
+                            <input name="cpf" type="text" class="form-control" required placeholder="000.000.000-00" value="<%= data.cpf %>" />
+                            <% }else{ %>
+                              <input name="cpf" type="text" class="form-control" disabled placeholder="000.000.000-00" value="<%= data.cpf %>" />
+                              <% } %>
                         </div>
                       </div>
                       <div class="col-md-5 pr-1">
@@ -70,7 +74,7 @@
                       <div class="col-md-4 pr-1">
                         <div class="form-group">
                           <label>Valor (R$)</label>
-                          <input name="operacoes[valor]" type="text" required class="form-control" placeholder="0.00" value="">
+                          <input name="operacoes[valor]" type="text" required class="form-control" placeholder="" value="0">
                         </div>
                       </div>
                       <div class="col-md-4 pr-1">
@@ -109,7 +113,13 @@
                                 <%= item.tipo %>
                               </td>
                               <td>
-                                <%= item.valor %>
+                                <% if(item.tipo == "CRED"){ %>
+                                  <i class="nc-icon nc-simple-add"></i>
+                                  <%= item.valor %>
+                                    <% } else{ %>
+                                      <i class="nc-icon nc-simple-delete"></i>
+                                      <%= item.valor %>
+                                        <% } %>
                               </td>
                             </tr>
                             <% }); %>

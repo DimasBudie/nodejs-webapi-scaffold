@@ -18,6 +18,14 @@ module.exports = {
         });
     },
 
+    renderEdit: async (req, res) => {
+        let input = req.params;  
+        res.render('pages/investidor-detail',{
+            data: await service.getById(input.id), 
+            msg: null
+        });
+    },
+    
     create: async (req, res) => {
         let input = req.body;
         let data = await service.save({
@@ -36,14 +44,6 @@ module.exports = {
         res.render('pages/investidor-detail', {
             data: data, 
             msg: data._id != null ? config.okMessage : config.errorMessage
-        });
-    },
-
-    renderEdit: async (req, res) => {
-        let input = req.params;  
-        res.render('pages/investidor-detail',{
-            data: await service.getById(input.id), 
-            msg: null
         });
     },
 
