@@ -21,12 +21,12 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Investidores Associados</h4>
-                <!-- <a class="btn btn-primary" href="/cliente-detalhe/0" role="button">Novo Investidor</a> -->
+                <h4 class="card-title"></h4>
+                <a class="btn btn-primary" href="/investidor-new" role="button">Novo Investidor</a>
               </div>
               <div class="card-body">
                 <table class="table">
-                  <thead class=" text-primary">                    
+                  <thead class=" text-primary">
                     <th>Nome</th>
                     <th>Cpf</th>
                     <th>Taxa(%a.m)</th>
@@ -34,26 +34,25 @@
                     <th>#</th>
                   </thead>
                   <tbody>
-                    <% console.log(list) %>
-                      <% list.forEach(item => { %>
-                        <tr>
-                          <td>
-                            <%= item.nome %>
-                          </td>
-                          <td>
-                            <%= item.cpf %>
-                          </td>
-                          <td>
-                            <%= item.taxa %>
-                          </td>
-                          <td>
-                            <%= item.saldo %>
-                          </td>
-                          <td>
-                              <a href="/investidor-detalhe/<%= item._id %>" class="btn btn-primary">Visualizar</a>                              
-                            </td>                          
-                        </tr>
-                        <% }); %>
+                    <% data.forEach(item => { %>
+                      <tr>
+                        <td>
+                          <%= item.nome %>
+                        </td>
+                        <td>
+                          <%= item.cpf %>
+                        </td>
+                        <td>
+                          <%= item.taxa %>
+                        </td>
+                        <td>
+                          <%= item.saldo %>
+                        </td>
+                        <td>
+                          <a href="/investidor-detail/<%= item._id %>" class="btn btn-primary">Visualizar</a>
+                        </td>
+                      </tr>
+                      <% }); %>
                   </tbody>
                 </table>
               </div>

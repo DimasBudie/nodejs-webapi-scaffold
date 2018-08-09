@@ -8,6 +8,7 @@ let Operacao = new Schema({
 });
 
 let Investidor = new Schema({
+  id: String,
   nome: String,   // João da Silva
   taxa: String,   // 1.5
   cpf: String,    // 040.654.986-87

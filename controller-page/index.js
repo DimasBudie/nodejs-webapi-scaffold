@@ -45,9 +45,10 @@ function setRoutesForConfiguracao(router){
 }
 
 function setRoutesForInvestidor(router){
-    router.get('/investidor', auth, investidorController.index);
-    router.post('/investidor-novo', auth, investidorController.create);
-    router.get('/investidor-detalhe/:id', auth, investidorController.detail);
+    router.get('/investidor-index', auth, investidorController.renderIndex);    
+    router.get('/investidor-new', auth, investidorController.renderNew);
+    router.get('/investidor-detail/:id', auth, investidorController.renderEdit);  
+    router.post('/investidor-save', auth, investidorController.create);  
 }
 
 module.exports = router;

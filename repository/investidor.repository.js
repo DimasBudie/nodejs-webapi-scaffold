@@ -1,10 +1,22 @@
 const Investidor = require("../model/investidor.model");
+const mongoose = require('mongoose');
 
 module.exports = {
 
     create: (investidor) => {
-        var db = new Investidor(investidor);
-        db.save();
+        return new Promise(res => {            
+            let db = new Investidor(investidor);
+            db.id = db._id;            
+            res(db.save());
+        });
+    },
+
+    update: (investidor) => {
+        return new Promise(res => {
+            Investidor.update(investidor, (err, doc) => {                
+                return doc != null ? res(investidor) : res(null);
+            });
+        });
     },
 
     getAll: () => {
@@ -16,11 +28,11 @@ module.exports = {
         });
     },
 
-    getByCpf: (cpf) => {
+    getById: (id) => {
         return new Promise(res => {
             Investidor
-                .findOne({ 'cpf': cpf }, (err, doc) => {
-                    return doc;
+                .findOne({ 'id': id }, (err, doc) => {
+                    res(doc);
                 });
         });
     },

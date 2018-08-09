@@ -1,32 +1,50 @@
-let service = require('../service/investidor.service');
+const service = require('../service/investidor.service');
+const config = require('../appconfig');
+const moment = require('moment');
 
 module.exports = {
 
-    index: async (req, res) => {
-        let list = await service.getAll();
-        res.render('pages/investidor-lista', {list : list});
+    renderIndex: async (req, res) => {        
+        res.render('pages/investidor-index', { 
+            data: await service.getAll(),
+            msg: null
+        });
+    },
+
+    renderNew: async (req, res) => {
+        res.render('pages/investidor-detail', {
+            data: await service.getDetault(), 
+            msg: null
+        });
     },
 
     create: async (req, res) => {
         let input = req.body;
-        await service.create({
+        let data = await service.save({
+            id : input.id,
             nome: input.nome,
             taxa: input.taxa,
-            cpf: input.cpf,   
-            saldo : '0',
+            cpf: input.cpf,
+            saldo: '0',
             operacoes: [{
-              valor : input.operacoes.valor,
-              tipo : input.operacoes.tipo
+                valor: input.operacoes.valor,
+                tipo: input.operacoes.tipo,
+                data: moment().format('DD/MM/YYYY')
             }]
-        })
+        });
 
-        let list = await service.getAll();
-        res.render('pages/investidor-lista', {list : list});
+        res.render('pages/investidor-detail', {
+            data: data, 
+            msg: data._id != null ? config.okMessage : config.errorMessage
+        });
     },
 
-    detail: async (req, res) => {
-        //let input = req.params;
-        res.render('pages/investidor-detalhe');
+    renderEdit: async (req, res) => {
+        let input = req.params;  
+        res.render('pages/investidor-detail',{
+            data: await service.getById(input.id), 
+            msg: null
+        });
     },
 
 }
