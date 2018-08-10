@@ -4,47 +4,110 @@ const moment = require('moment');
 
 module.exports = {
 
-    renderIndex: async (req, res) => {        
-        res.render('pages/investidor-index', { 
+    renderIndex: async (req, res) => {
+        res.render('pages/investidor-index', {
             data: await service.getAll(),
             msg: null
         });
     },
 
     renderNew: async (req, res) => {
-        res.render('pages/investidor-detail', {
-            data: await service.getDetault(), 
+        res.render('pages/investidor-new', {
+            data: await service.getDetault(),
             msg: null
         });
     },
 
     renderEdit: async (req, res) => {
-        let input = req.params;  
-        res.render('pages/investidor-detail',{
-            data: await service.getById(input.id), 
+        let input = req.params;
+        res.render('pages/investidor-detail', {
+            data: await service.getById(input.id),
             msg: null
         });
     },
-    
+
     create: async (req, res) => {
         let input = req.body;
-        let data = await service.save({
-            id : input.id,
-            nome: input.nome,
-            taxa: input.taxa,
-            cpf: input.cpf,
-            saldo: '0',
-            operacoes: [{
-                valor: input.operacoes.valor,
-                tipo: input.operacoes.tipo,
-                data: moment().format('DD/MM/YYYY')
-            }]
-        });
+        try {                                    
+            let data = await service.create({
+                nome: input.nome,
+                taxa: input.taxa,
+                cpf: input.cpf
+            });
 
-        res.render('pages/investidor-detail', {
-            data: data, 
-            msg: data._id != null ? config.okMessage : config.errorMessage
-        });
+            res.render('pages/investidor-detail', {
+                data: data,
+                msg: null
+            });
+        } catch (error) {
+            res.render('pages/investidor-new', {
+                data: input,
+                msg: error
+            });
+        }
+    },
+
+    updateDadoBasico: async (req, res) => {
+        let input = req.body;
+        try {
+            let data = await service.updateDadoBasico({
+                id: input.id,
+                nome: input.nome,
+                taxa: input.taxa,
+                cpf: input.cpf
+            });
+    
+            res.render('pages/investidor-detail', {
+                data: data,
+                msg: config.okMessage
+            });
+        } catch (error) {
+            res.render('pages/investidor-detail', {
+                data: input,
+                msg: error
+            }); 
+        }
+    },
+
+    createLancamento: async (req, res) => {
+        let input = req.body;
+        try {
+            let data = await service.createLancamento({
+                id: input.id,
+                valor: input.valor,
+                tipo: input.tipo,                
+            });
+    
+            res.render('pages/investidor-detail', {
+                data: data,
+                msg: config.okMessage
+            });
+        } catch (error) {
+            res.render('pages/investidor-detail', {
+                data: input,
+                msg: error
+            }); 
+        }
+    },
+
+    createAnotacao: async (req, res) => {
+        let input = req.body;        
+        try {
+            let data = await service.createAnotacao({
+                id: input.id,
+                conteudo: input.conteudo             
+            });
+    
+            res.render('pages/investidor-detail', {
+                data: data,
+                msg: config.okMessage
+            });
+        } catch (error) {
+            res.render('pages/investidor-detail', {
+                data: input,
+                msg: error
+            }); 
+        }
     },
 
 }

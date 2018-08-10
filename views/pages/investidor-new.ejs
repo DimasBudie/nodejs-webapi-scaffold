@@ -1,0 +1,83 @@
+<% console.log(data) %>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+
+  <body class="">
+    <div class="wrapper ">
+      <div class="sidebar" data-color="white" data-active-color="danger">
+        <%- include('../partials/sidebar') %>
+      </div>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+          <%- include('../partials/topbar', {title : 'Detalhes do Investidor'}) %>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content">
+          <div class="row">
+            <div class="col-md-8">
+              <div>
+                <% if(msg != null){ %>
+                  <div class="alert alert-warning alert-dismissible fade show">
+                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <span>
+                      <%= msg%>
+                    </span>
+                  </div>
+                  <% } %>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title"></h4>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="/investidor-create">
+                    <div class="row">
+                      <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                          <label>Nome</label>
+                          <input name="nome" type="text" class="form-control" required placeholder="" value="<%= data.nome %>" />
+                        </div>
+                      </div>
+                      <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                          <label>Taxa (%)</label>
+                          <input name="taxa" type="text" class="form-control" required placeholder="" value="<%= data.taxa %>" />
+                        </div>
+                      </div>
+                      <div class="col-md-12 pr-1">
+                          <div class="form-group">
+                            <label>CPF</label>
+                            <input name="cpf" type="text" class="form-control" required placeholder="000.000.000-00" value="<%= data.cpf %>" />
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="update ml-auto mr-auto">
+                        <input name="id" type="hidden" value="<%= data.id %>" />
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer footer-black  footer-white ">
+          <%- include('../partials/footer') %>
+        </footer>
+      </div>
+    </div>
+    <%- include('../partials/scripts') %>
+      <script>
+      </script>
+  </body>
+
+  </html>

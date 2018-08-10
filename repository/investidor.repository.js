@@ -1,5 +1,4 @@
 const Investidor = require("../model/investidor.model");
-const mongoose = require('mongoose');
 
 module.exports = {
 
@@ -13,7 +12,7 @@ module.exports = {
 
     update: (investidor) => {
         return new Promise(res => {
-            Investidor.update(investidor, (err, doc) => {                
+            Investidor.update({'id' : investidor.id}, investidor, (err, doc) => {                
                 return doc != null ? res(investidor) : res(null);
             });
         });

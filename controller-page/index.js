@@ -48,7 +48,10 @@ function setRoutesForInvestidor(router){
     router.get('/investidor-index', auth, investidorController.renderIndex);    
     router.get('/investidor-new', auth, investidorController.renderNew);
     router.get('/investidor-detail/:id', auth, investidorController.renderEdit);  
-    router.post('/investidor-save', auth, investidorController.create);  
+    router.post('/investidor-create', auth, investidorController.create);  
+    router.post('/investidor-dado-basico', auth, investidorController.updateDadoBasico);
+    router.post('/investidor-lancamento', auth, investidorController.createLancamento);
+    router.post('/investidor-anotacao', auth, investidorController.createAnotacao); 
 }
 
 module.exports = router;

@@ -1,145 +1,260 @@
-<% console.log(data) %>
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-  <head>
-    <%- include('../partials/head') %>
-  </head>
+<head>
+  <%- include('../partials/head') %>
+</head>
 
-  <body class="">
-    <div class="wrapper ">
-      <div class="sidebar" data-color="white" data-active-color="danger">
-        <%- include('../partials/sidebar') %>
-      </div>
-      <div class="main-panel">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-          <%- include('../partials/topbar', {title : 'Detalhes do Investidor'}) %>
-        </nav>
-        <!-- End Navbar -->
-        <div class="content">
-          <div class="row">
-            <div class="col-md-12">
-              <div>
-                <% if(msg != null){ %>
-                  <div class="alert alert-primary alert-dismissible fade show">
-                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="nc-icon nc-simple-remove"></i>
-                    </button>
-                    <span>
-                      <%= msg%>
-                    </span>
-                  </div>
-                  <% } %>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title"></h4>
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <%- include('../partials/sidebar') %>
+    </div>
+    <div class="main-panel">
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <%- include('../partials/topbar', {title : 'Detalhes do Investidor'}) %>
+      </nav>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div>
+              <% if(msg != null){ %>
+                <div class="alert alert-primary alert-dismissible fade show">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span>
+                    <%= msg%>
+                  </span>
                 </div>
-                <div class="card-body">
-                  <form method="POST" action="/investidor-save">
-                    <div class="row">
-                      <div class="col-md-8 pr-1">
-                        <div class="form-group">
-                          <label>Nome</label>
-                          <input name="nome" type="text" class="form-control" required placeholder="" value="<%= data.nome %>" />
-                        </div>
-                      </div>
-                      <div class="col-md-3 pr-1">
-                        <div class="form-group">
-                          <label>Taxa (%a.a)</label>
-                          <input name="taxa" type="text" class="form-control" required placeholder="" value="<%= data.taxa %>" />
-                        </div>
-                      </div>
+                <% } %>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"></h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-8 pr-1">
+                    <div class="form-group">
+                      <label>Nome</label>
+                      <input type="text" class="form-control" disabled value="<%= data.nome %>" />
                     </div>
-                    <div class="row">
-                      <div class="col-md-5 pr-1">
-                        <div class="form-group">
-                          <label>CPF</label>
-                          <% if(data.id == null){ %>
-                            <input name="cpf" type="text" class="form-control" required placeholder="000.000.000-00" value="<%= data.cpf %>" />
-                            <% }else{ %>
-                              <input name="cpf" type="text" class="form-control" disabled placeholder="000.000.000-00" value="<%= data.cpf %>" />
+                  </div>
+                  <div class="col-md-3 pr-1">
+                    <div class="form-group">
+                      <label>Taxa (%)</label>
+                      <input type="text" class="form-control" disabled value="<%= data.taxa %>" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                      <label>CPF</label>
+                      <input type="text" class="form-control" disabled value="<%= data.cpf %>" />
+                    </div>
+                  </div>
+                  <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                      <label>Saldo (R$)</label>
+                      <input type="text" class="form-control" disabled value="<%= data.saldo %>" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card-body">
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <ul id="tabs" class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active show" data-toggle="tab" href="#tab1" role="tab" aria-expanded="false" aria-selected="false">Lançamentos</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" aria-selected="false">Anotações</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div id="my-tab-content" class="tab-content text-center">
+                        <div class="tab-pane active show" id="tab1" role="tabpanel" aria-expanded="false">
+                          <div class="text-left">
+                            <% if(data.operacoes != null){ %>
+                              <table class="table">
+                                <thead class=" text-primary">
+                                  <th>Data</th>
+                                  <th>Tipo</th>
+                                  <th>Valor(R$)</th>
+                                </thead>
+                                <tbody>
+                                  <% data.operacoes.forEach(item => { %>
+                                    <tr>
+                                      <td>
+                                        <%= item.data %>
+                                      </td>
+                                      <td>
+                                        <%= item.tipo %>
+                                      </td>
+                                      <td>
+                                        <% if(item.tipo == "CRED"){ %>
+                                          <i class="nc-icon nc-simple-add"></i>
+                                          <%= item.valor %>
+                                            <% } else{ %>
+                                              <i class="nc-icon nc-simple-delete"></i>
+                                              <%= item.valor %>
+                                                <% } %>
+                                      </td>
+                                    </tr>
+                                    <% }); %>
+                                </tbody>
+                              </table>
                               <% } %>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-5 pr-1">
-                        <div class="form-group">
-                          <label>Saldo (R$)</label>
-                          <input type="text" class="form-control" disabled placeholder="0.00" value="<%= data.saldo %>" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4 pr-1">
-                        <div class="form-group">
-                          <label>Valor (R$)</label>
-                          <input name="operacoes[valor]" type="text" required class="form-control" placeholder="" value="0">
-                        </div>
-                      </div>
-                      <div class="col-md-4 pr-1">
-                        <div class="form-group">
-                          <label>Operação</label>
-                          <select name="operacoes[tipo]" class="form-control">
-                            <option value="CRED">Crédito</option>
-                            <option value="DEBT">Débito</option>
-                          </select>
+                        <div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="false">
+                          <div class="text-left">
+                              <% if(data.anotacoes != null){ %>
+                                <table class="table">
+                                  <tbody>
+                                    <% data.anotacoes.forEach(item => { %>
+                                      <tr>
+                                        <td>
+                                            <b><%= item.data %></b> - <%= item.conteudo %>
+                                        </td>
+                                      </tr>
+                                      <% }); %>
+                                  </tbody>
+                                </table>
+                                <% } %>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="update ml-auto mr-auto">
-                        <input name="id" type="hidden" value="<%= data.id %>" />
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+                  <!-- <h4 class="card-title">Ações</h4> -->
+                  <div class="card card-plain">
+                    <div class="card-header" role="tab" id="headingOne">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+                        class="collapsed">
+                        Dados Básicos
+                        <i class="nc-icon nc-minimal-down"></i>
+                      </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+                        <form method="POST" action="/investidor-dado-basico">
+                          <div class="row">
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Nome</label>
+                                <input name="nome" type="text" class="form-control" required placeholder="" value="<%= data.nome %>" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>CPF</label>
+                                <input name="cpf" type="text" class="form-control" required placeholder="" value="<%= data.cpf %>" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Taxa (%)</label>
+                                <input name="taxa" type="text" class="form-control" required placeholder="" value="<%= data.taxa %>" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1 text-center">
+                              <input name="id" type="hidden" value="<%= data.id %>" />
+                              <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                          </div>
+                        </form>
                       </div>
                     </div>
-                  </form>
-                  <hr/>
-                  <div>
-                    <% if(data.operacoes != null){ %>
-                      <table class="table">
-                        <thead class=" text-primary">
-                          <th>Data</th>
-                          <th>Tipo</th>
-                          <th>Valor(R$)</th>
-                        </thead>
-                        <tbody>
-                          <% data.operacoes.forEach(item => { %>
-                            <tr>
-                              <td>
-                                <%= item.data %>
-                              </td>
-                              <td>
-                                <%= item.tipo %>
-                              </td>
-                              <td>
-                                <% if(item.tipo == "CRED"){ %>
-                                  <i class="nc-icon nc-simple-add"></i>
-                                  <%= item.valor %>
-                                    <% } else{ %>
-                                      <i class="nc-icon nc-simple-delete"></i>
-                                      <%= item.valor %>
-                                        <% } %>
-                              </td>
-                            </tr>
-                            <% }); %>
-                        </tbody>
-                      </table>
-                      <% } %>
+                  </div>
+                  <div class="card card-plain">
+                    <div class="card-header" role="tab" id="headingTwo">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Novo Lançamento
+                        <i class="nc-icon nc-minimal-down"></i>
+                      </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="card-body">
+                        <form method="POST" action="/investidor-lancamento">
+                          <div class="row">
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Valor (R$)</label>
+                                <input name="valor" type="text" required class="form-control" placeholder="0,00" value="">
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Operação</label>
+                                <select name="tipo" class="form-control">
+                                  <option value="CRED">Crédito</option>
+                                  <option value="DEBT">Débito</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1 text-center">
+                              <input name="id" type="hidden" value="<%= data.id %>" />
+                              <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-plain">
+                    <div class="card-header" role="tab" id="headingThree">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                        Nova Anotação
+                        <i class="nc-icon nc-minimal-down"></i>
+                      </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="card-body">
+                        <form method="POST" action="/investidor-anotacao">
+                          <div class="row">
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label></label>
+                                <textarea required name="conteudo" rows="4" cols="50"></textarea>
+                              </div>
+                              <div class="col-md-12 pr-1 text-center">
+                                <input name="id" type="hidden" value="<%= data.id %>" />
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer class="footer footer-black  footer-white ">
-          <%- include('../partials/footer') %>
-        </footer>
       </div>
+      <footer class="footer footer-black  footer-white ">
+        <%- include('../partials/footer') %>
+      </footer>
     </div>
-    <%- include('../partials/scripts') %>
-      <script>
-      </script>
-  </body>
+  </div>
+  <%- include('../partials/scripts') %>
+    <script>
+    </script>
+</body>
 
-  </html>
+</html>
