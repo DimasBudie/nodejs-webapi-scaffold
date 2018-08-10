@@ -13,9 +13,9 @@ module.exports = {
 
     create: (config) => {
         return new Promise(res => {
-            new Configuracao(config).save((err, doc) => {
-                return doc != null ? res(doc) : res(null);
-            });
+            let db = new Configuracao(config);
+            db.id = db._id;            
+            res(db.save());
         });
     },
 

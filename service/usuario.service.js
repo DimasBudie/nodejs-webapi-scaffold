@@ -1,10 +1,7 @@
-const repository = require('../repository/usuario.repository');
+const repo = require('../repository/usuario.repository');
 
 module.exports = {
 
-    /**
-     * Find user given the login credentials.
-     */
     getByLogin: async (username, password) => {
         if (!username) {
             throw "username is mandatory"
@@ -14,19 +11,26 @@ module.exports = {
             throw "password is mandatory";
         }
 
-        return await repository.findByLogin(username, password);        
+        return await repo.getByLogin(username, password);        
     },
 
-    /**
-     * Check if informed username exists in database.
-     */
     getByUsername: async (usuario) => {
         if (!usuario) {
             throw "username is mandatory";
         }
 
-        let user = await repository.findByUsername(usuario);
+        let user = await repo.getByUsername(usuario);
         return user.usuario == usuario ? user : null;
     },
 
+    updatePassword: async (input) => {        
+        if (!input.usuario) throw "Usuário é obrigatório";
+        if (!input.senhaAntiga) throw "Senha antiga é obrigatória";
+        if (!input.novaSenha) throw "Nova é obrigatória";
+        if (!input.novaSenhaRepete) throw "Nova é obrigatória";        
+
+        let model = await repo.getByUsername(input.usuario);
+        model.senha = input.novaSenha;
+        return await repo.update(model);
+    },
 }

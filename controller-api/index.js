@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const authController = require('./auth.controller');
+const authController = require('./usuario.controller');
 const productController = require('./product.controller');
 
 setRouteAuth(router);

@@ -2,7 +2,7 @@ const Usuario = require("../model/usuario.model");
 
 module.exports = {
 
-    findByLogin: (usuario, senha) => {
+    getByLogin: (usuario, senha) => {
         return new Promise(res => {
             Usuario
                 .where('usuario', usuario)
@@ -17,7 +17,7 @@ module.exports = {
         });
     },
 
-    findByUsername: (username) => {
+    getByUsername: (username) => {
         return new Promise(res => {
             Usuario
                 .where('usuario', username)
@@ -28,6 +28,14 @@ module.exports = {
                         res(doc[0]);
                     }
                 });
+        });
+    },
+
+    update: (usuario) => {
+        return new Promise(res => {
+            Usuario.update({'usuario' : usuario.usuario}, usuario, (err, doc) => {                
+                return doc != null ? res(usuario) : res(null);
+            });
         });
     },
 }

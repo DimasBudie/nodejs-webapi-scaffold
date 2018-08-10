@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
+
 let dataSchema = new Schema({
-  taxaInvestidor: String,   // 1.5
-  taxaEmprestimo: String,   // 3
+  id: String,
+  taxaInvestidor: { type: String, default: '' },
+  taxaEmprestimo: { type: String, default: '' },
 }, { collection: 'Configuracao' });
 
 module.exports = mongoose.model('Configuracao', dataSchema);

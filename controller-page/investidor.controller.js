@@ -1,6 +1,5 @@
 const service = require('../service/investidor.service');
 const config = require('../appconfig');
-const moment = require('moment');
 
 module.exports = {
 

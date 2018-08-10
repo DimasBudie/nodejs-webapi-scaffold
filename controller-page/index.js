@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const authController = require('./auth.controller');
+const authController = require('./usuario.controller');
 const homeController = require('./home.controller');
 const clienteController = require('./cliente.controller');
 const emprestimoController = require('./emprestimo.controller');
@@ -41,7 +41,8 @@ function setRoutesForEmprestimo(router) {
 
 function setRoutesForConfiguracao(router){
     router.get('/configuracao', auth, configuracaoController.index);
-    router.post('/save', auth, configuracaoController.save);
+    router.post('/configuracao-usuario', auth, configuracaoController.updatePassword);
+    router.post('/configuracao-juros', auth, configuracaoController.updateJuros);
 }
 
 function setRoutesForInvestidor(router){

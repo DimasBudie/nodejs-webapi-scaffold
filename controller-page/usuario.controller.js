@@ -1,18 +1,11 @@
-let service = require('../service/usuario.service');
+const service = require('../service/usuario.service');
 
 module.exports = {
 
-    /**
-     * Renderiza a pagina inicial.
-     */
     index: (req, res) => {
         res.render('pages/login', { isAuthValid: true });
     },
 
-    /**
-     * Valida usuário e senha informados, autentica uma nova sessão
-     * e redireciona para a home do sistema.
-     */
     login: async (req, res) => {
         let input = req.body;
 
@@ -43,10 +36,7 @@ module.exports = {
             res.render('pages/login', { isAuthValid: true });
     },
 
-    /**
-     * Encerra a sessão do usuário e redireciona para a pagina de login.
-     */
-    logout : (req, res) => {
+    logout: (req, res) => {
         req.session.destroy();
         res.render('pages/login', { isAuthValid: true });
     },

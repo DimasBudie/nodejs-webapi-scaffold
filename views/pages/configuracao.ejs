@@ -18,50 +18,141 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          <div class="col-md-12">
-            <% if(msg != null){ %>
-              <div class="alert alert-success alert-dismissible fade show">
-                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                  <i class="nc-icon nc-simple-remove"></i>
-                </button>
-                <span>
-                  <%= msg %>
-                </span>
+          <div class="col-md-8">
+            <div>
+              <% if(msg != null){ %>
+                <div class="alert alert-success alert-dismissible fade show">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span>
+                    <%= msg %>
+                  </span>
+                </div>
+                <% } %>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"></h4>
               </div>
-              <% } %>
-                <div class="card">
-                  <div class="card-header">
-                    <h4 class="card-title"></h4>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Usuário</label>
+                      <input type="text" class="form-control" readonly placeholder="user" value="<%= data.usuario %>" />
+                    </div>
                   </div>
-                  <div class="card-body">
-                    <form method="POST" action="/save">
-                      <h3>
-                        <span>Taxas %</span>
-                      </h3>
-                      <div class="row">
-                        <div class="col-md-6 pr-1">
-                          <div class="form-group">
-                            <label>Remuneração Investidor(%)</label>
-                            <input name="taxaInvestidor" type="text" class="form-control" placeholder="" value="<%= config.taxaInvestidor %>" />
-                          </div>
-                        </div>
-                        <div class="col-md-6 pr-1">
-                          <div class="form-group">
-                            <label>Juros Empréstimo (%)</label>
-                            <input name="taxaEmprestimo" type="text" class="form-control" placeholder="" value="<%= config.taxaEmprestimo %>" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="update ml-auto mr-auto">
-                          <input name="_id" type="hidden" class="form-control" value="<%= config._id %>" />
-                          <button type="submit" class="btn btn-primary">Salvar</button>
-                        </div>
-                      </div>
-                    </form>
-                    <hr/>
+                  <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                      <label>Senha</label>
+                      <input type="text" class="form-control" readonly placeholder="*********" />
+                    </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Juros Investidor(%)</label>
+                      <input type="text" class="form-control" readonly placeholder="0.0" value="<%= data.config.taxaInvestidor %>" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Juros Empréstimo (%)</label>
+                      <input type="text" class="form-control" readonly placeholder="0.0" value="<%= data.config.taxaEmprestimo %>" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+                  <!-- <h4 class="card-title">Ações</h4> -->
+                  <div class="card card-plain">
+                    <div class="card-header" role="tab" id="headingOne">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+                        class="collapsed">
+                        Trocar Senha
+                        <i class="nc-icon nc-minimal-down"></i>
+                      </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+                        <form method="POST" action="/configuracao-usuario">
+                          <div class="row">
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Usuário</label>
+                                <input name="usuario" type="text" class="form-control" readonly value="<%= data.usuario %>" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Senha Antiga</label>
+                                <input name="senhaAntiga" type="password" class="form-control" required />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Nova Senha</label>
+                                <input name="novaSenha" type="password" class="form-control" required />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Repetir Nova Senha</label>
+                                <input name="novaSenhaRepete" type="password" class="form-control" required />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1 text-center">                              
+                              <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-plain">
+                    <div class="card-header" role="tab" id="headingTwo">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Alterar Taxa de Juros %
+                        <i class="nc-icon nc-minimal-down"></i>
+                      </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="card-body">
+                        <form method="POST" action="/configuracao-juros">
+                          <div class="row">
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Juros Investidor(%)</label>
+                                <input name="taxaInvestidor" type="text" class="form-control" placeholder="0.0" value="<%= data.config.taxaInvestidor %>"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1">
+                              <div class="form-group">
+                                <label>Juros Empréstimo (%)</label>
+                                <input name="taxaEmprestimo" type="text" class="form-control" placeholder="0.0" value="<%= data.config.taxaEmprestimo %>"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-12 pr-1 text-center">
+                              <input name="id" type="hidden" value="<%= data.config.id %>" />
+                              <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

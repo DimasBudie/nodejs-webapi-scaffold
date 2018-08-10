@@ -3,30 +3,25 @@ const repo = require('../repository/configuracao.repository');
 module.exports = {
 
     get: async () => {
-        let config = await repo.get();              
-        if (!config) {     
-            config = {                
-                taxaInvestidor: '2',
-                taxaEmprestimo: '2'
-            };       
+        let config = await repo.get();
+        if (!config) {
+            config = {
+                taxaInvestidor: '0.0',
+                taxaEmprestimo: '0.0'
+            };
             config = await repo.create(config);
         }
-        return config;        
+        return config;
     },
 
-    save: async (configuracao) => {
-        if (!configuracao.taxaInvestidor) {
-            throw "TaxaInvestidor é obrigatório";
-        }
+    updateJuros: async (input) => {
+        if (!input.taxaInvestidor) throw "TaxaInvestidor é obrigatório";
+        if (!input.taxaEmprestimo) throw "TaxaEmprestimo é obrigatório";
 
-        if (!configuracao.taxaEmprestimo) {
-            throw "TaxaEmprestimo é obrigatório";
-        }
-        
-        if (!configuracao._id) {
-            return await repo.create(configuracao);
-        } else {            
-            return await repo.update(configuracao);
+        if (!input.id) {
+            return await repo.create(input);
+        } else {
+            return await repo.update(input);
         }
     },
 
